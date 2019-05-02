@@ -96,7 +96,7 @@ initial <- 10000
 rate <- 0.08
 years <- 10
 
-final <- # complete this
+final <- 0 # complete this
   
 print(final)
 ```
@@ -241,7 +241,7 @@ a[[2]]
 
 ```{r}
 a[2]
-class()
+class(a$age)
 class(a[2])
 class(a[[2]])
 ```
