@@ -277,7 +277,7 @@ final
 
 ## Practice
 
-1. What is happening here? Add appropriate spaces and parantheses to make it readable (and make sure you never write anything like this!):
+1. What is happening here? Add appropriate spaces and parentheses to make it readable (and make sure you never write anything like this!):
 
 ```{r}
 1:10-1-1:(11-1)
