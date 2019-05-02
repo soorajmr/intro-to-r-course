@@ -293,4 +293,6 @@ final
 ## Reference
 
 * https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
-* [The Base-R cheat sheet]()
+* [The Base-R cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)
+* https://stat545.com/block004_basic-r-objects.html
+
