@@ -1,0 +1,296 @@
+---
+title: "Reproducible Data Analysis using R Part 1: Basics"
+output:
+  html_notebook:
+    code_folding: show
+    highlight: kate
+    #number_sections: yes
+    theme: yeti
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+  warning: FALSE
+  pdf_document:
+    toc: yes
+---
+
+
+**Note**: _This document is written in R Markdown, a format that lets you combine formatted text and images with the code you write and the output that code generates. For a detailed account, see [R Markdown, The Definitive Guide](https://bookdown.org/yihui/rmarkdown/). If you're in a hurry, [this cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) will give you everything you need!_
+
+***
+
+## The S Legacy
+
+The predecesor of R is the S programming language that originated in the 1970's at Bell Laboratories. R is almost an open source reimplementation of S, and the below books on S are often referred to as guides for the underlying principles and approaches.
+
+**The Blue Book, The White Book and the Green Book**
+
+> ![The Blue Book](https://images-na.ssl-images-amazon.com/images/I/41D5TaFs-tL._SX356_BO1,204,203,200_.jpg){width=170px}
+![The White Book](https://pictures.abebooks.com/isbn/9780534167653-us-300.jpg){width=165px}
+![The Green Book](https://images-na.ssl-images-amazon.com/images/I/41nA1LEjCWL._SX331_BO1,204,203,200_.jpg){width=160px}
+
+---
+
+R was initially developed by two statisticians, Robert Gentleman and Ross Ihaka in the 1990's at the University of Auckland. Their 1996 paper announcing R is [here](http://srv2.lemig.umontreal.ca/donnees/geo1512/IHAKA_JCGS_1996_R_concepts_implementation.pdf). R was open sourced under [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License), and got adopted by an active community of developers. Over the years R gained so much popularity that by late 2000's, mainstream media started noticing:  
+  
+> [![Gentleman and Ihaka](nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)  
+
+---
+
+## Gazillion Packages
+
+What makes R so useful is the huge number of contributed packages for a wide range of things. Most of these packages are hosted on the [*The Comprehensive R Archive Network*](https://cran.r-project.org/) (CRAN). A smaller, but increasing number of packages are on Github and [Bioconductor](https://www.bioconductor.org/).
+
+>![](https://gist.github.com/daroczig/3cf06d6db4be2bbe3368/raw/b66b0531fb1b86d3e04a003b2e105ad4f147900e/number-of-submitted-packages-to-CRAN.png){width=600px}  
+> (Source: https://gist.github.com/daroczig/3cf06d6db4be2bbe3368)
+
+These directories may be helpful to find the packages you need:
+
+* [CRAN Task Views](https://cran.r-project.org/web/views/) 
+* [An 'awesome' list for R](https://github.com/qinwf/awesome-R)
+
+---
+
+## R as a calculator
+
+An expresson can use operators and functions.
+
+```{r}
+2 * (31 - 10)
+
+9^3 + 10^3
+
+1 / factorial(0) + 
+  1 / factorial(1) + 
+  1 / factorial(2) + 
+  1 / factorial(3) + 
+  1 / factorial(4) + 
+  1 / factorial(5)
+
+10000 * (1 + 0.08)^10
+
+log(2019)
+log(2019, 10) # The second argument is optional
+log10(2019)
+
+
+exp(log(2019))
+
+# integer division
+102 %/% 10
+
+# modulus (remainder)
+102 %% 10
+
+round(sqrt(2019), 2)
+sqrt(-2019 + 0i) # complex number
+```
+
+The above code illustrates the basic arithmetic operations in R. Base R includes a large number of built-in functions like log. You can read the documentation of a function using the ? operator. E.g. type `?log` on the console. For a full list of functions, see https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html
+
+## Named objects (Variables)
+
+```{r}
+initial <- 10000
+rate <- 0.08
+years <- 10
+
+final <- # complete this
+  
+print(final)
+```
+
+## Conditionals
+
+```{r}
+1 == 1
+1 == 1.001
+1 < 1.001
+
+if(final > 2 * initial) {
+  print("Your money more than doubled!")
+} else {
+  print("Hmm, It could grow more.")
+}
+
+i <- 10
+if((i %% 2 == 0) & (i %% 3 == 0)) {
+  print("Divisible by 6")
+}
+
+if((TRUE) | (TRUE)) { # Replace with the correct conditions
+  print("Not divisible by 6")
+}
+
+```
+
+## Loops
+
+```{r}
+sum <- 0
+
+for(i in 0:100) {
+  sum <- sum + 1 / factorial(i)
+}
+
+sum
+exp(1)
+```
+
+## Vectors
+
+Vectors are objects that contain one or more elements. The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc. Vectors are probably the most common type of object in R.
+
+```{r}
+some_names <- c("Alice", "Bob", "Charlie")
+ages <- c(22, 13, 38)
+birth_years <- 2019 - ages # Vector operation
+birth_years
+
+misc <- c("and", 22.12, sum < 2) # Will be coerced
+class(some_names)
+class(ages)
+class(misc)
+```
+
+```{r}
+more_names <- c("Dan", "Elsa")
+all_names <- c(some_names, more_names)
+all_names
+```
+
+`rep` and `seq` can be used to construct vectors.
+
+```{r}
+twos <- rep(2, 20)
+twos
+
+x <- 1:10
+y <- seq(10, 1, -1) # same as 100:1
+x + y
+```
+
+Indexing a vector
+
+```{r}
+print(c(x[1], x[10], y[1], y[10]))
+
+x[-1] # drop the item at the index
+
+x[1:5] + y[6:10]
+
+x > 5
+which(x > 5)
+y[x > 5] # index by logical vector
+y[which(x > 5)] # index by a vector of indices
+```
+
+You can name the elements in the vector
+
+```{r}
+names(x)
+names(x) <- letters[1:length(x)]
+names(x)
+x
+x[c('g', 'i')] # index by name
+```
+
+Missing values (NA) and NaN
+
+```{r}
+x <- c(2, 4, 0, NA, 10)
+y <- c(1, 2, 0, 10, 1)
+z <- x / y
+is.na(z)
+is.nan(z)
+```
+
+**Exercise**: try the functions `mode()`, `class()`, `str()`, `is.numeric()`, `is.logical()` and `length()` on your functions.
+
+```{r}
+
+```
+
+Matrices and arrays in R are generalisations of vectors. We will skip them for now.
+
+## Factors
+
+```{r}
+days <- factor(c("Mon", "Mon", "Thu", "Tue"),
+               levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"),
+               ordered = TRUE)
+
+days[3]
+
+```
+
+## Lists
+
+Lists are the most flexible type of objects in R. Lists can contain just about any type of objects, including lists. They could also be sometimes complex to manipulate. Use lists only when you need them.
+
+```{r}
+a <- list(name = "Alice", age = 11, height = 110)
+str(a)
+
+a$age
+a[[2]]
+```
+
+`[]` vs `[[]]` while indexing a list
+
+```{r}
+a[2]
+class()
+class(a[2])
+class(a[[2]])
+```
+
+## Data Frames
+
+Data frames can be thought of as lists of atomic vectors all having the same length. A data frame represents a table arranged in rows and columns.
+
+```{r}
+students <- list(name = c('Alice', 'Bob', 'Charlie'),
+                age = c(11, 10, 11),
+                status = factor(c("P", "A", "P")))
+
+students
+
+students_df <- as.data.frame(students)
+
+students_df
+str(students_df)
+```
+
+## Functions
+
+```{r}
+calculate_interest <- function(p, r, n) {
+  # complete this
+}
+
+final <- calculate_interest(initial, rate, years)
+
+final
+```
+
+## Practice
+
+1. What is happening here? Add appropriate spaces and parantheses to make it readable (and make sure you never write anything like this!):
+
+```{r}
+1:10-1-1:(11-1)
+```
+
+2. Generate a vector containing the Fibonacci series, 1 1 2 3 5 8 13 21
+
+```{r}
+
+```
+
+
+## Reference
+
+* https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+* [The Base-R cheat sheet]()
