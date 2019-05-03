@@ -1,28 +1,47 @@
 ---
-title: "Reproducible Data Analysis using R Part 1: Basics"
+title: "Reproducible Data Analysis using R"
+subtitle: 'Part 1: Basics'
 output:
-  html_notebook:
-    code_folding: show
-    highlight: kate
-    #number_sections: yes
-    theme: yeti
+  html_document:
     toc: yes
     toc_float:
       collapsed: no
-      smooth_scroll: no
-  warning: FALSE
-  pdf_document:
+  html_notebook:
     toc: yes
+    toc_float:
+      collapsed: no
 ---
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
+```
 
-**Note**: _This document is written in R Markdown, a format that lets you combine formatted text and images with the code you write and the output that code generates. For a detailed account, see [R Markdown, The Definitive Guide](https://bookdown.org/yihui/rmarkdown/). If you're in a hurry, [this cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) will give you everything you need!_
+---
 
-***
+<style type="text/css">
+.note {
+  font-size: 12px;
+  color: darkolivegreen;
+}
+</style>
+
+##### **Before We Begin - A Note on Reproducible Reports** {.note}
+
+This document is written in ___R Markdown___, a format that lets you combine formatted text and images with the code you write and the output your code generates. Blogs, journal articles, books, etc. often show descriptive analyses and visualisation of tabular data. In many cases, these analyses and plots are produced in R. Then one would wonder if the R code and the article/blog could be authored together rather than stitching up separately made pieces. The answer is yes, and R markdown could be used for exactly that. To make the idea more concrete, consider [this article](https://fivethirtyeight.com/features/the-pay-gap-is-way-too-entrenched-to-be-solved-by-women-alone/) on the website fivethirtyeight.com. They have obviously done quite a bit of exploratory data analysis and compiled the output together with the text of the article. Similar output can be produced by authoring the whole thing in markdown. The added advantage is that the reader can fetch the source (the markdown document) of the article, view and run the complete source code, reproduce and validate the results! Here are some examples that offer true reproducibility:
+
+* Here is a blog post on [gender balance in maths](https://emitanaka.github.io/r/posts/2019-01-20-the-gender-balance-in-mathematical-sciences-a-case-study/). This entire post was written as R markdown, and [the Rmd file is available on the author's github](https://github.com/emitanaka/r/blob/master/_posts/2019-01-20-the-gender-balance-in-mathematical-sciences-a-case-study/the-gender-balance-in-mathematical-sciences-a-case-study.Rmd).
+
+* Here is a paper on [Spatial modelling of the two-party preferred vote in Australian federal elections](https://github.com/jforbes14/eechidna-paper/raw/master/elections.pdf). The whole thing was written as an R markdown file, and it is available on the [github page of one of the authors](https://github.com/jforbes14/eechidna-paper/blob/master/elections.Rmd).
+
+* This one is a more lighthearted [blog post](https://livefreeordichotomize.com/2018/06/27/bringing-the-family-together-finding-the-center-of-geographic-points-in-r/), again written in R markdown. The source is available [here](https://github.com/LFOD/real-blog/blob/master/content/post/2018-06-27-bringing-the-family-together-finding-the-center-of-geographic-points-in-r.Rmd).
+
+To know more about creating websites using R markdown, read [this post](https://livefreeordichotomize.com/2017/08/08/how-to-make-an-rmarkdown-website/). If you want to create more formal-looking academic articles, [this](https://elifesciences.org/labs/cad57bcf/composing-reproducible-manuscripts-using-r-markdown) may be helpful. For a detailed account on R markdown, see [R Markdown, The Definitive Guide](https://bookdown.org/yihui/rmarkdown/). If you're in a hurry, [this cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) will give you the essentials!
+
+---  
 
 ## The S Legacy
 
-The predecesor of R is the S programming language that originated in the 1970's at Bell Laboratories. R is almost an open source reimplementation of S, and the below books on S are often referred to as guides for the underlying principles and approaches.
+The predecessor of R is the S programming language that originated in the 1970's at Bell Laboratories. R is almost an open source reimplementation of S, and the below books on S are often referred to as guides for the underlying principles and approaches.
 
 **The Blue Book, The White Book and the Green Book**
 
@@ -33,7 +52,7 @@ The predecesor of R is the S programming language that originated in the 1970's 
 ---
 
 R was initially developed by two statisticians, Robert Gentleman and Ross Ihaka in the 1990's at the University of Auckland. Their 1996 paper announcing R is [here](http://srv2.lemig.umontreal.ca/donnees/geo1512/IHAKA_JCGS_1996_R_concepts_implementation.pdf). R was open sourced under [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License), and got adopted by an active community of developers. Over the years R gained so much popularity that by late 2000's, mainstream media started noticing:  
-  
+
 > [![Gentleman and Ihaka](nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)  
 
 ---
@@ -85,6 +104,7 @@ exp(log(2019))
 
 round(sqrt(2019), 2)
 sqrt(-2019 + 0i) # complex number
+
 ```
 
 The above code illustrates the basic arithmetic operations in R. Base R includes a large number of built-in functions like log. You can read the documentation of a function using the ? operator. E.g. type `?log` on the console. For a full list of functions, see https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html
@@ -96,7 +116,7 @@ initial <- 10000
 rate <- 0.08
 years <- 10
 
-final <- 0 # complete this
+final <- initial * (1 + rate)^years
   
 print(final)
 ```
@@ -115,17 +135,19 @@ if(final > 2 * initial) {
 }
 
 i <- 10
-if((i %% 2 == 0) & (i %% 3 == 0)) {
+if((i %% 2 == 0) & (i %% 3 == 0)) { # Logical operator AND
   print("Divisible by 6")
 }
-
-if((TRUE) | (TRUE)) { # Replace with the correct conditions
+  
+## Replace FALSE below with the appropriate conditional expression using the logical OR, |
+if(FALSE) {
   print("Not divisible by 6")
 }
-
 ```
 
 ## Loops
+
+A quick example of a `for` loop:
 
 ```{r}
 sum <- 0
@@ -138,17 +160,18 @@ sum
 exp(1)
 ```
 
+
 ## Vectors
 
 Vectors are objects that contain one or more elements. The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc. Vectors are probably the most common type of object in R.
 
 ```{r}
 some_names <- c("Alice", "Bob", "Charlie")
-ages <- c(22, 13, 38)
+ages <- c(22, 13, 38, 5, 26)
 birth_years <- 2019 - ages # Vector operation
-birth_years
+print(birth_years)
 
-misc <- c("and", 22.12, sum < 2) # Will be coerced
+misc <- c("India", 22.12, sum < 2) # Will be coerced
 class(some_names)
 class(ages)
 class(misc)
@@ -167,11 +190,11 @@ twos <- rep(2, 20)
 twos
 
 x <- 1:10
-y <- seq(10, 1, -1) # same as 100:1
+y <- seq(10, 1, -1) # same as 10:1
 x + y
 ```
 
-Indexing a vector
+Indexing a vector (picking an item in a vector)
 
 ```{r}
 print(c(x[1], x[10], y[1], y[10]))
@@ -180,12 +203,13 @@ x[-1] # drop the item at the index
 
 x[1:5] + y[6:10]
 
-x > 5
-which(x > 5)
-y[x > 5] # index by logical vector
-y[which(x > 5)] # index by a vector of indices
-```
+ages > 18
+which(ages > 18)
 
+all_names[ages > 18] # index by logical vector
+all_names[which(ages > 18)] # index by a vector of indices
+```
+  
 You can name the elements in the vector
 
 ```{r}
@@ -206,15 +230,18 @@ is.na(z)
 is.nan(z)
 ```
 
-**Exercise**: try the functions `mode()`, `class()`, `str()`, `is.numeric()`, `is.logical()` and `length()` on your functions.
+**Exercise**: try the functions `mode()`, `class()`, `str()`, `is.numeric()`, `is.logical()` and `length()` on your objects.
 
 ```{r}
+## Complete this
 
 ```
 
-Matrices and arrays in R are generalisations of vectors. We will skip them for now.
+Matrices and arrays in R are generalisations of vectors. We will skip them for now and introduce them when we encounter them later. They are rarely required if you are dealing with tabular data.
 
 ## Factors
+
+Factors are a way of representing categorical data in R. Factors can take only one of the predefined values called levels. Factors can be defined as ordered or unordered, depending on whether the data has a natural order relevant to the problem at hand.
 
 ```{r}
 days <- factor(c("Mon", "Mon", "Thu", "Tue"),
@@ -237,7 +264,9 @@ a$age
 a[[2]]
 ```
 
-`[]` vs `[[]]` while indexing a list
+<br/>
+
+**`[]` vs `[[]]` while indexing a list**
 
 ```{r}
 a[2]
@@ -245,6 +274,9 @@ class(a$age)
 class(a[2])
 class(a[[2]])
 ```
+
+<br/>
+`[[]]` gives you the item (component) at the index specified, while `[]` returns the sub-list matching the indexing criterion. 
 
 ## Data Frames
 
@@ -283,10 +315,15 @@ final
 1:10-1-1:(11-1)
 ```
 
+
 2. Generate a vector containing the Fibonacci series, 1 1 2 3 5 8 13 21
 
 ```{r}
+fib_series <- function(n) {
+  ## Complete this
+}
 
+## Complete this
 ```
 
 
