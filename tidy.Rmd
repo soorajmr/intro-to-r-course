@@ -72,6 +72,9 @@ Tidyverse is a set of R packages that are compatible with tidy data principles a
 
 This is an example using the urban agglomorations (Class-1 cities) population data from the Census of India 2011. We look at the population growth in these cities and the changes in sex ratio over the decades.
 
+We will specify the whole data cleaning and transformation process as a `dplyr` pipeline. Before you start, do read the dplyr documentation by issuing the commands `help(dplyr)` and `vignette("dplyr")` at the console in RStudio. Also refer to the RStudio [cheat sheets](https://www.rstudio.com/resources/cheatsheets/).  
+
+
 ```{r}
 library(readxl)
 library(zoo)
@@ -85,8 +88,6 @@ data <- read_excel("data/CLASS I.xlsx",
 
 ```
 
-
-Step-by-step cleaning
 
 ```{r}
 data <- data %>% 
@@ -113,7 +114,7 @@ data <- data %>%
   filter(year >= 1961) %>% 
   select(-c(rowselector, district, type))
 ```
-
+<br/>
 One would ideally do some more careful processing of the NA's, but for now, we just ignore it and proceed.
 
 #### Sex ratio change
@@ -139,9 +140,10 @@ data %>%
 
 ```{r}
 ## Your code here
+
 ```
 
-#### Population in Class-1 Cities in Each Census
+#### Total Population in Class-1 Cities in Each Census
 
 This is in fact already part of the excel sheet. Just to demostrate dplyr verbs.
 
@@ -156,6 +158,26 @@ data %>%
   ) %>% 
   mutate(sex_ratio = round(total_male/total_female, 2))
 ```
+
+
+Spread and gather: long to wide and vice versa. 
+
+```{r}
+pop_years <- data %>% 
+  select(ua, year, population) %>% 
+  spread(year, population) 
+
+print(pop_years)
+
+cor(pop_years$`2011`, pop_years$`1961`, use = "pairwise.complete.obs")
+```
+
+**Practice**: if we don't want numerical column names in the wide data (above), we could add a prefix (e.g. `year_`) to the year values. Create a data frame with such a modification. Hint: `paste()` or `glue()`  
+
+```{r}
+## Your code here
+```
+
 
 ---
 
