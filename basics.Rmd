@@ -6,6 +6,7 @@ output:
     toc: yes
     toc_float:
       collapsed: no
+    self_contained: yes
   html_notebook:
     toc: yes
     toc_float:
@@ -53,7 +54,7 @@ The predecessor of R is the S programming language that originated in the 1970's
 
 R was initially developed by two statisticians, Robert Gentleman and Ross Ihaka in the 1990's at the University of Auckland. Their 1996 paper announcing R is [here](http://srv2.lemig.umontreal.ca/donnees/geo1512/IHAKA_JCGS_1996_R_concepts_implementation.pdf). R was open sourced under [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License), and got adopted by an active community of developers. Over the years R gained so much popularity that by late 2000's, mainstream media started noticing:  
 
-> [![Gentleman and Ihaka](nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)  
+> [![Gentleman and Ihaka](images/nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)  
 
 ---
 
