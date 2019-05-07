@@ -15,7 +15,7 @@ output:
 
 ## Grammar of Graphics and Ggplot2
 
-An influencial book by Leland Wilkinson with this title lays out a theoretical framework to systematically contruct quantitative graphics. Hadley Wickham extended these and related ideas and implemented them in the ggplot2 package. If you are interested in more details, this paper would be a great starting point: http://vita.had.co.nz/papers/layered-grammar.pdf.  
+An influential book by Leland Wilkinson with this title lays out a theoretical framework to systematically construct quantitative graphics. Hadley Wickham extended these and related ideas and implemented them in the ggplot2 package. If you are interested in more details, this paper would be a great starting point: http://vita.had.co.nz/papers/layered-grammar.pdf.  
 
 Note that these ideas deal only with static graphics.
 
@@ -40,6 +40,8 @@ To learn and practice more, the Rmd files here are great: https://github.com/had
 knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
 ```
 
+We load the data saved by the tidy.Rmd file (part-2 of the tutorial).
+
 ```{r}
 library(tidyverse)
 
@@ -58,18 +60,31 @@ pop_data <- data %>%
 pop_data
 ```
 
+## Male and Female Population Distributions
+
 ```{r}
 pop_data %>% 
-  filter(sex != "total" & year == 2011) %>% 
-  ggplot() +
-    geom_histogram(aes(x = log(population), 
-                       fill = sex, 
-                       alpha = 0.5),
-                   position = "identity")
+  filter(sex != "total" & year == 1961) %>% 
+  ggplot(aes(x = log(population), fill = sex, alpha = 0.5)) +
+    geom_density(position = "identity")
+    
 ```
 
 <br/>
-Try changing `geom_histogram()` to `geom_density()`. Also try the `position = "dodge"` option.
+Try changing `geom_density()` to `geom_histogram()`. Also try the `position = "dodge"` option. You could also add `facet_wrap()` to get the distributions for the years separately.
+
+## Total Population Distributions over Time
+
+```{r}
+library(ggridges)
+
+pop_data %>% 
+  filter(sex == "total") %>% 
+  ggplot(aes(x = log10(population), 
+             y = factor(year, levels = rev(levels(factor(year)))))) +
+    stat_density_ridges() 
+```
+
 
 ## Line graphs - change over time
 
@@ -152,11 +167,12 @@ cities_scatter <- data %>%
     sex_ratio = pop_male / pop_female,
     pop_density = population / area     
   ) %>%
-  ggplot(aes(x = log10(area), y = -pop_density, label = ua)) +
+  ggplot(aes(x = log10(population), y = pop_density, label = ua)) +
     geom_point(aes(size = log10(population),
                    colour = sex_ratio,
-                   alpha = 0.6)) +
-    scale_color_gradient(low = "green", high = "red")
+                   alpha = 0.4)) +
+    scale_color_gradient(low = "green", high = "red") +
+    scale_y_reverse()
 
 cities_scatter
 ```
@@ -182,35 +198,51 @@ cities_scatter_labelled
 plotly::ggplotly(cities_scatter)
 ```
 
-## Scatter GIF
+## Scatter Plot Animation
+
+Let's try something fancy!
 
 ```{r}
-library(animation)
+#library(animation)
 
 mega_cities <- data %>% 
-  filter(year == 2011) %>% 
-  filter(population > 5000000) %>% 
+  filter(year == 2011 & population > 3000000 & ua_no != 6) %>% 
   select(ua_no)
   
-get_scatter <- function(y) {
-  data %>% 
+draw_scatter <- function(y) {
+  p <- data %>% 
     filter(year == y) %>% 
     semi_join(mega_cities, by = "ua_no") %>% 
     mutate(
       sex_ratio = pop_male / pop_female,
       pop_density = population / area     
     ) %>%
-    ggplot(aes(x = log10(area), y = -pop_density, label = ua)) +
-      geom_point(aes(size = log10(population),
-                     colour = sex_ratio,
-                     alpha = 0.6)) +
-      scale_color_gradient(low = "green", high = "red") +
-      geom_label_repel(aes(label = ua))
+    ggplot(aes(x = sex_ratio, y = pop_density, label = ua)) +
+      geom_point(aes(size = sqrt(population) / 300,
+                     colour = ua,
+                     alpha = 0.5)) +
+      xlim(.8, 1.8) +
+      ylim(25000, 0) +
+      guides(size = FALSE, alpha = FALSE) + 
+      scale_size_identity()
+  
+  ggsave(paste0("images/anim_", y, ".png"), plot = p)
+  
+  p
 }
 
+## saveGIF is not working for some reason. We'll save the png's and convert them to GIF using Imagemagick.
+#saveGIF(c(1961, 1971, 1981, 1991, 2001, 2011) %>% map(get_scatter), 
+#        interval = .2,
+#        movie.name = "megacities_evolution.gif")
 
-saveGIF(c(1961, 1971, 1981, 1991, 2001, 2011) %>% map(get_scatter), 
-        interval = .5, 
-        movie.name="megacities_evolution.gif")
+scatter_plots <- c(1961, 1971, 1981, 1991, 2001, 2011) %>% map(draw_scatter)
+
+shell("magick convert -delay 100 -loop 1 images/anim*.png images/megacities_evolution.gif")
 
 ```
+
+Here is the generated GIF file (to see the animation, refresh the page or open the image in a new window/tab on the browser)  
+
+<br/>
+![Megacities](images/megacities_evolution.gif)
