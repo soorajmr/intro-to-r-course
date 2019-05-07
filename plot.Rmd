@@ -1,0 +1,216 @@
+---
+title: "Reproducible Data Analysis using R"
+subtitle: 'Part 3: ggplot'
+output:
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: no
+    self_contained: yes
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
+---
+
+## Grammar of Graphics and Ggplot2
+
+An influencial book by Leland Wilkinson with this title lays out a theoretical framework to systematically contruct quantitative graphics. Hadley Wickham extended these and related ideas and implemented them in the ggplot2 package. If you are interested in more details, this paper would be a great starting point: http://vita.had.co.nz/papers/layered-grammar.pdf.  
+
+Note that these ideas deal only with static graphics.
+
+At a very high level, this is what you would do with ggplot:
+
+* create a plot with the `ggplot()` call
+* add layers using various `geom_*()` or `stat_*()` calls. Some properties (e.g. position) of these layers can be set in these calls.
+* specify "aesthetics" using `aes()` for the full plot or per-layer. This deals with selecting variables to plot, colours, sizes, shapes of the plot elements etc. Aesthetics can be "mapped" to variables in the data.
+* optionally specify faceting
+* optionally adjust the scale, the axes and the legend
+* optionally customise the theme
+
+**Resources:**
+
+For a quick overview of ggplot, see https://r4ds.had.co.nz/data-visualisation.html.  
+
+To learn and practice more, the Rmd files here are great: https://github.com/hadley/ggplot2-book
+
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
+```
+
+```{r}
+library(tidyverse)
+
+data <- read_csv("data/ua_populations.csv")
+sex_ratio_change <- read_csv("data/sex_ratio_change.csv")
+```
+
+Create a tidy population data set
+
+```{r}
+pop_data <- data %>% 
+  rename(total = population, male = pop_male, female = pop_female) %>% 
+  select(-c(area, pop_change, pop_change_percent)) %>% 
+  gather(sex, population, total, male, female)
+
+pop_data
+```
+
+```{r}
+pop_data %>% 
+  filter(sex != "total" & year == 2011) %>% 
+  ggplot() +
+    geom_histogram(aes(x = log(population), 
+                       fill = sex, 
+                       alpha = 0.5),
+                   position = "identity")
+```
+
+<br/>
+Try changing `geom_histogram()` to `geom_density()`. Also try the `position = "dodge"` option.
+
+## Line graphs - change over time
+
+
+#### Plotting for one city - total population over time
+
+```{r}
+pop_data %>%
+  filter(ua == "Vapi ^" & sex == "total") %>% 
+  ggplot(aes(x = year, y = population)) +
+    geom_line()
+```
+
+#### Facet wrap
+
+```{r fig.width = 10, fig.height=6}
+gap_increasing <- sex_ratio_change %>% 
+  top_n(20, sex_ratio_slope)
+
+gap_decreasing <- sex_ratio_change %>% 
+  top_n(-20, sex_ratio_slope)
+
+p <- pop_data %>%
+  semi_join(gap_decreasing, by = "ua_no") %>% 
+  filter(sex == "total") %>% 
+  ggplot(aes(x = year, y = population)) +
+    geom_line() +
+    facet_wrap(~ua, scales = "free_y")
+
+p + theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+#### Multiple cities - male vs. female
+
+**Disparity closing**
+
+```{r fig.width = 10, fig.height=8}
+pop_data %>%
+  semi_join(gap_decreasing, by = "ua_no") %>% 
+  filter(sex != "total") %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = population, colour = sex)) + 
+    facet_wrap(~ua, scales = "free_y", ncol = 4, strip.position = "bottom") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+**Disparity increasing**
+
+```{r fig.width = 10, fig.height=8}
+pop_data %>%
+  semi_join(gap_increasing, by = "ua_no") %>% 
+  filter(sex != "total") %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = population, colour = sex)) + 
+    facet_wrap(~ua, scales = "free_y", ncol = 4, strip.position = "bottom") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+## 2011 population: bar plot
+
+```{r}
+pop_data %>% 
+  filter(year == 2011 & sex == "total") %>% 
+  arrange(desc(population)) %>% 
+  top_n(30) %>% 
+  ggplot() +
+    geom_bar(aes(x = reorder(factor(ua), population), y = population), stat = "identity") +
+    coord_flip() +
+    xlab("City") +
+    scale_y_continuous(label = scales::comma)
+```
+
+## Scatter plot
+
+```{r fig.width = 10, fig.height=8}
+
+cities_scatter <- data %>% 
+  filter(year == 2011) %>% 
+  mutate(
+    sex_ratio = pop_male / pop_female,
+    pop_density = population / area     
+  ) %>%
+  ggplot(aes(x = log10(area), y = -pop_density, label = ua)) +
+    geom_point(aes(size = log10(population),
+                   colour = sex_ratio,
+                   alpha = 0.6)) +
+    scale_color_gradient(low = "green", high = "red")
+
+cities_scatter
+```
+
+#### With labels
+
+```{r fig.width = 8, fig.height=10}
+library(ggrepel)
+
+cities_scatter_labelled <- cities_scatter +
+  geom_label_repel(aes(label = ifelse(sex_ratio > quantile(sex_ratio, 0.98, na.rm = TRUE) |
+                                        sex_ratio < quantile(sex_ratio, 0.02, na.rm = TRUE) |
+                                        pop_density > quantile(pop_density, 0.98, na.rm = TRUE) |
+                                        pop_density < quantile(pop_density, 0.02, na.rm = TRUE), 
+                                      ua, '')))
+
+cities_scatter_labelled
+```
+
+## Interactive Scatter plot using plotly
+
+```{r fig.width = 8, fig.height=6}
+plotly::ggplotly(cities_scatter)
+```
+
+## Scatter GIF
+
+```{r}
+library(animation)
+
+mega_cities <- data %>% 
+  filter(year == 2011) %>% 
+  filter(population > 5000000) %>% 
+  select(ua_no)
+  
+get_scatter <- function(y) {
+  data %>% 
+    filter(year == y) %>% 
+    semi_join(mega_cities, by = "ua_no") %>% 
+    mutate(
+      sex_ratio = pop_male / pop_female,
+      pop_density = population / area     
+    ) %>%
+    ggplot(aes(x = log10(area), y = -pop_density, label = ua)) +
+      geom_point(aes(size = log10(population),
+                     colour = sex_ratio,
+                     alpha = 0.6)) +
+      scale_color_gradient(low = "green", high = "red") +
+      geom_label_repel(aes(label = ua))
+}
+
+
+saveGIF(c(1961, 1971, 1981, 1991, 2001, 2011) %>% map(get_scatter), 
+        interval = .5, 
+        movie.name="megacities_evolution.gif")
+
+```
