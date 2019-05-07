@@ -459,6 +459,9 @@ print(pop_years)</code></pre>
 <pre><code>## [1] 0.9063201</code></pre>
 <p><strong>Practice</strong>: if we don’t want numerical column names in the wide data (above), we could add a prefix (e.g. <code>year_</code>) to the year values. Create a data frame with such a modification. Hint: <code>paste()</code> or <code>glue()</code></p>
 <pre class="r"><code>## Your code here</code></pre>
+<p>Write the data to disk</p>
+<pre class="r"><code>write_csv(data, &quot;data/ua_populations.csv&quot;)
+write_csv(sex_ratio_change, &quot;data/sex_ratio_change.csv&quot;)</code></pre>
 <hr />
 </div>
 </div>

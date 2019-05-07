@@ -178,6 +178,12 @@ cor(pop_years$`2011`, pop_years$`1961`, use = "pairwise.complete.obs")
 ## Your code here
 ```
 
+Write the data to disk
+
+```{r}
+write_csv(data, "data/ua_populations.csv")
+write_csv(sex_ratio_change, "data/sex_ratio_change.csv")
+```
 
 ---
 
