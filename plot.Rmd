@@ -2,15 +2,15 @@
 title: "Reproducible Data Analysis using R"
 subtitle: 'Part 3: ggplot'
 output:
-  html_notebook:
-    toc: yes
-    toc_float:
-      collapsed: no
   html_document:
     toc: yes
     toc_float:
       collapsed: no
     self_contained: yes
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
 ---
 
 ## Grammar of Graphics and Ggplot2
@@ -65,9 +65,8 @@ pop_data
 ```{r}
 pop_data %>% 
   filter(sex != "total" & year == 1961) %>% 
-  ggplot(aes(x = log(population), fill = sex, alpha = 0.5)) +
+  ggplot(aes(x = log10(population), fill = sex, alpha = 0.5)) +
     geom_density(position = "identity")
-    
 ```
 
 <br/>
@@ -149,7 +148,7 @@ pop_data %>%
 ```{r}
 pop_data %>% 
   filter(year == 2011 & sex == "total") %>% 
-  arrange(desc(population)) %>% 
+  #arrange(desc(population)) %>% 
   top_n(30) %>% 
   ggplot() +
     geom_bar(aes(x = reorder(factor(ua), population), y = population), stat = "identity") +
@@ -211,6 +210,10 @@ Ever felt like doing a [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling
 
 ```{r}
 library(gganimate)
+
+mega_cities <- data %>% 
+  filter(year == 2011 & population > 3000000 & ua_no != 6) %>% 
+  select(ua_no)
 
 data %>% 
     semi_join(mega_cities, by = "ua_no") %>% 
