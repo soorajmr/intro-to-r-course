@@ -15,9 +15,7 @@ output:
 
 ## Grammar of Graphics and Ggplot2
 
-An influential book by Leland Wilkinson with this title lays out a theoretical framework to systematically construct quantitative graphics. Hadley Wickham extended these and related ideas and implemented them in the ggplot2 package. If you are interested in more details, this paper would be a great starting point: http://vita.had.co.nz/papers/layered-grammar.pdf.  
-
-Note that these ideas deal only with static graphics.
+An influential book [Grammar of Graphics](https://www.cs.uic.edu/~wilkinson/TheGrammarOfGraphics/GOG.html) by Leland Wilkinson lays out a theoretical framework to systematically construct quantitative graphics. Hadley Wickham extended this and related ideas and implemented them in the ggplot2 package. If you are interested in more details, [this paper](http://vita.had.co.nz/papers/layered-grammar.pdf) would be a great starting point.  
 
 At a very high level, this is what you would do with ggplot:
 
@@ -35,6 +33,8 @@ For a quick overview of ggplot, see https://r4ds.had.co.nz/data-visualisation.ht
 To learn and practice more, the Rmd files here are great: https://github.com/hadley/ggplot2-book
 
 ---
+
+## Plotting the Urban Agglomerations
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
@@ -85,6 +85,7 @@ pop_data %>%
     stat_density_ridges() 
 ```
 
+<br/>`ggridges` is a ggplot extension. There are many such useful extensions, and you can see the list [here](https://www.ggplot2-exts.org/gallery/).  
 
 ## Line graphs - change over time
 
@@ -194,13 +195,19 @@ cities_scatter_labelled
 
 ## Interactive Scatter plot using plotly
 
+Plotly is a library to create interactive visualisation. They have an API that follows the tidyverse philosophy. [This book](https://plotly-r.com/index.html) is a great resource to get started if you are interested. Plotly also provides a magic API to bring static ggplot plots to life. Here we will use only that.  
+
+
 ```{r fig.width = 8, fig.height=6}
 plotly::ggplotly(cities_scatter)
 ```
 
 ## Scatter Plot Animation
 
-Let's try something fancy!
+Let's try something fancy!  
+
+Ever felt like doing a [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling)? R lets you do some of that as well! In case you don't know what I am talking about, whatch [this video](https://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade) (seek to 11:00 if you're in a hurry). 
+
 
 ```{r}
 #library(animation)
@@ -246,3 +253,39 @@ Here is the generated GIF file (to see the animation, refresh the page or open t
 
 <br/>
 ![Megacities](images/megacities_evolution.gif)
+
+
+```{r}
+library(gganimate)
+
+data %>% 
+    semi_join(mega_cities, by = "ua_no") %>% 
+    mutate(
+      sex_ratio = pop_male / pop_female,
+      pop_density = population / area     
+    ) %>%
+    ggplot(aes(x = sex_ratio, y = pop_density, label = ua)) +
+      geom_point(aes(size = sqrt(population) / 300,
+                     colour = ua,
+                     alpha = 0.5)) +
+      xlim(.8, 1.8) +
+      ylim(25000, 0) +
+      guides(size = FALSE, alpha = FALSE) + 
+      scale_size_identity() +
+      labs(title = 'Year: {frame_time}', x = 'Sex Ratio', y = 'Population Density') +
+      transition_time(as.integer(year)) +
+      ease_aes('linear')
+```
+
+## R - Links and Resources
+
+* **BRUG**: [Bengaluru R UseR Group](https://www.meetup.com/en-AU/BengaluRu-use-R-gRoup/)
+* [R Ladies](https://rladies.org/)
+* [UseR! Conference](http://www.user2019.fr/)
+* [R Bloggers](https://www.r-bloggers.com/)
+* [The R Journal](https://journal.r-project.org/)
+
+
+
+
+
