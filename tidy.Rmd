@@ -2,15 +2,15 @@
 title: "Reproducible Data Analysis using R"
 subtitle: 'Part 2: Tidyverse'
 output:
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
   html_document:
     toc: yes
     toc_float:
       collapsed: no
     self_contained: yes
-  html_notebook:
-    toc: yes
-    toc_float:
-      collapsed: no
 ---
 
 ```{r, include=FALSE}
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
 
 | | |
 |:------------------------------------------|----------------:|
-|R used to be a cryptic tool built by statisticians for statisticians until [Hadley Wickham](http://hadley.nz/) came into the scene and made it cool! [despite being a statistician ;) ] He [introduced](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf) the pholosophy of tidy data and viewing data analysis as a deeply interconnected and iterative process. He has also created or inspired the creation of multiple R packages. | ![Hadley Wickham](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hadley-wickham2016-02-04.jpg/200px-Hadley-wickham2016-02-04.jpg){width=120px}|  
+|R used to be a cryptic tool built by statisticians for statisticians until [Hadley Wickham](http://hadley.nz/) came into the scene and made it cool! [despite being a statistician ;) ] He [introduced](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf) the philosophy of tidy data and viewing data analysis as a deeply interconnected and iterative process. He has also created or inspired the creation of multiple R packages. | ![Hadley Wickham](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hadley-wickham2016-02-04.jpg/200px-Hadley-wickham2016-02-04.jpg){width=120px}|  
   
 <br/>
 
@@ -70,7 +70,7 @@ Tidyverse is a set of R packages that are compatible with tidy data principles a
 
 ## Wrangling Urban Agglomorations
 
-This is an example using the urban agglomorations (Class-1 cities) population data from the Census of India 2011. We look at the population growth in these cities and the changes in sex ratio over the decades.
+This is an example using the urban agglomerations (Class-1 cities) population data from the Census of India 2011. We look at the population growth in these cities and the changes in sex ratio over the decades.
 
 We will specify the whole data cleaning and transformation process as a `dplyr` pipeline. Before you start, do read the dplyr documentation by issuing the commands `help(dplyr)` and `vignette("dplyr")` at the console in RStudio. Also refer to the RStudio [cheat sheets](https://www.rstudio.com/resources/cheatsheets/).  
 
@@ -87,7 +87,6 @@ data <- read_excel("data/CLASS I.xlsx",
                                  'pop_male', 'pop_female'))
 
 ```
-
 
 ```{r}
 data <- data %>% 
@@ -120,6 +119,16 @@ One would ideally do some more careful processing of the NA's, but for now, we j
 #### Sex ratio change
 
 ```{r}
+data %>% 
+  mutate(sex_ratio = pop_male/pop_female) %>% 
+  group_by(ua_no) %>% 
+  do(lm = lm(sex_ratio ~ year, data = .)) %>% 
+  mutate(sex_ratio_slope = summary(lm)$coeff[2]) %>%
+  select(ua_no, sex_ratio_slope)
+  
+```
+
+```{r}
 sex_ratio_change <- data %>% 
   mutate(sex_ratio = pop_male/pop_female) %>% 
   group_by(ua_no) %>% 
@@ -136,7 +145,7 @@ data %>%
 
 #### Population Change
 
-**Practice:** Do a similar analysis on population growth. Are there countries that did not have much growth in populaton over the years?
+**Practice:** Do a similar analysis on population growth. Are there countries that did not have much growth in population over the years?
 
 ```{r}
 ## Your code here
@@ -145,7 +154,7 @@ data %>%
 
 #### Total Population in Class-1 Cities in Each Census
 
-This is in fact already part of the excel sheet. Just to demostrate dplyr verbs.
+This is in fact already part of the excel sheet. Just to demonstrate dplyr verbs.
 
 ```{r}
 data %>% 
@@ -169,7 +178,7 @@ pop_years <- data %>%
 
 print(pop_years)
 
-cor(pop_years$`2011`, pop_years$`1961`, use = "pairwise.complete.obs")
+cor(pop_years$`2011`, pop_years$`1991`, use = "pairwise.complete.obs")
 ```
 
 **Practice**: if we don't want numerical column names in the wide data (above), we could add a prefix (e.g. `year_`) to the year values. Create a data frame with such a modification. Hint: `paste()` or `glue()`  

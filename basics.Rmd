@@ -2,15 +2,15 @@
 title: "Reproducible Data Analysis using R"
 subtitle: 'Part 1: Basics'
 output:
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
   html_document:
     toc: yes
     toc_float:
       collapsed: no
     self_contained: yes
-  html_notebook:
-    toc: yes
-    toc_float:
-      collapsed: no
 ---
 
 ```{r, include=FALSE}
@@ -74,7 +74,7 @@ These directories may be helpful to find the packages you need:
 
 ## R as a calculator
 
-An expresson can use operators and functions.
+An expression can use operators and functions.
 
 ```{r}
 2 * (31 - 10)
