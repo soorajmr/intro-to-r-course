@@ -2,15 +2,15 @@
 title: "Reproducible Data Analysis using R"
 subtitle: 'Part 3: ggplot'
 output:
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
   html_document:
     toc: yes
     toc_float:
       collapsed: no
     self_contained: yes
-  html_notebook:
-    toc: yes
-    toc_float:
-      collapsed: no
 ---
 
 ## Grammar of Graphics and Ggplot2
@@ -206,53 +206,7 @@ plotly::ggplotly(cities_scatter)
 
 Let's try something fancy!  
 
-Ever felt like doing a [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling)? R lets you do some of that as well! In case you don't know what I am talking about, whatch [this video](https://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade) (seek to 11:00 if you're in a hurry). 
-
-
-```{r}
-#library(animation)
-
-mega_cities <- data %>% 
-  filter(year == 2011 & population > 3000000 & ua_no != 6) %>% 
-  select(ua_no)
-  
-draw_scatter <- function(y) {
-  p <- data %>% 
-    filter(year == y) %>% 
-    semi_join(mega_cities, by = "ua_no") %>% 
-    mutate(
-      sex_ratio = pop_male / pop_female,
-      pop_density = population / area     
-    ) %>%
-    ggplot(aes(x = sex_ratio, y = pop_density, label = ua)) +
-      geom_point(aes(size = sqrt(population) / 300,
-                     colour = ua,
-                     alpha = 0.5)) +
-      xlim(.8, 1.8) +
-      ylim(25000, 0) +
-      guides(size = FALSE, alpha = FALSE) + 
-      scale_size_identity()
-  
-  ggsave(paste0("images/anim_", y, ".png"), plot = p)
-  
-  p
-}
-
-## saveGIF is not working for some reason. We'll save the png's and convert them to GIF using Imagemagick.
-#saveGIF(c(1961, 1971, 1981, 1991, 2001, 2011) %>% map(get_scatter), 
-#        interval = .2,
-#        movie.name = "megacities_evolution.gif")
-
-scatter_plots <- c(1961, 1971, 1981, 1991, 2001, 2011) %>% map(draw_scatter)
-
-shell("magick convert -delay 100 -loop 1 images/anim*.png images/megacities_evolution.gif")
-
-```
-
-Here is the generated GIF file (to see the animation, refresh the page or open the image in a new window/tab on the browser)  
-
-<br/>
-![Megacities](images/megacities_evolution.gif)
+Ever felt like doing a [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling)? R lets you do some of that as well! In case you don't know what I am talking about, whatch [this video](https://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade) (seek to 11:00 if you're in a hurry).  
 
 
 ```{r}
