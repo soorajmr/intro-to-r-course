@@ -2,15 +2,15 @@
 title: "Reproducible Data Analysis using R"
 subtitle: 'Part 2: Tidyverse'
 output:
-  html_notebook:
-    toc: yes
-    toc_float:
-      collapsed: no
   html_document:
     toc: yes
     toc_float:
       collapsed: no
     self_contained: yes
+  html_notebook:
+    toc: yes
+    toc_float:
+      collapsed: no
 ---
 
 ```{r, include=FALSE}
@@ -68,7 +68,7 @@ Tidyverse is a set of R packages that are compatible with tidy data principles a
 
 ---
 
-## Wrangling Urban Agglomorations
+## Wrangling Urban Agglomerations
 
 This is an example using the urban agglomerations (Class-1 cities) population data from the Census of India 2011. We look at the population growth in these cities and the changes in sex ratio over the decades.
 
