@@ -1,0 +1,27 @@
+---
+title: "Practice - 02"
+subtitle: 'Vectors'
+output: html_document
+---
+
+Vectors are objects that contain one or more elements. The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc.
+
+# 1
+
+What is the sum of the first 100 integers? You may recall that the formula n(n+1)/2 gives this. Use the formula. Now, can you calculate it without using the formula? 
+
+Hint: How do you generate a vector of numbers?
+
+```{r}
+
+```
+
+# 2
+
+Which is bigger - the sum of the first 100 odd numbers or the sum of the first 100 even numbers?
+
+Hint: Enter ?seq at the console. If the description is confusing, you could scroll to the examples at the end of that help page.
+
+```{r}
+
+```

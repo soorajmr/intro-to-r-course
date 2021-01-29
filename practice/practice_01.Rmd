@@ -1,0 +1,54 @@
+---
+title: "Practice - 01"
+subtitle: "R as a calculator"
+output: html_document
+---
+
+# 1
+
+What will be the result of running "1 + 2 * 4 - 8 / 2"? Make a guess. Try it in the code cell below. Did it match your expected answer?
+
+```{r}
+1 + 2 * 4 - 8 / 2
+```
+
+# 2
+
+How would you add parantheses in the above expression to get an answer of 2? Don't change the numbers or the arithmetic operators.
+
+```{r}
+
+```
+
+Note: You could also type these expressions at the '>' prompt on the console and get the same answer.
+
+# 3
+
+What is the difference between 10 / 3 and 10 %/% 3? Can you guess what is 10 %% 3? Try these in the cell below.
+
+```{r}
+
+```
+
+# 4
+
+Apart from the arithmetic operator, R comes with a large number of built-in functions. Try the log() and exp() functions available in R. What is log(10)? Why is it not 1?
+
+What about log(0)? log(-1)?
+
+What is log(exp(10))? Try a larger number - like 1000. What do you get? Why?
+
+```{r}
+
+```
+
+# 5
+
+Exponentiation (raising to a power) is represented by the ^ (or **) operator in R. Find the square root of 2 using the sqrt() function. Raising a number to the power of 1/2 is equivalent to finding the square root. Is the below equal to sqrt(2)? Why?
+
+
+```{r}
+2^1/2
+```
+
+At the end, knit this document into an html file.
