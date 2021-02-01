@@ -1,11 +1,77 @@
 ---
-title: "Practice - Vectors"
+title: "Practice - Vectors, Factors, Functions"
 output: html_document
 ---
 
 Vectors are objects that contain one or more elements. The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc.
 
+There are a few different ways of generating vectors of numbers. Let's try those.
+
+## Using colon (:)
+
+```{r}
+1:10
+```
+
+```{r}
+100:95
+```
+```{r}
+-10:10
+```
+```{r}
+-10:10
+```
+
+## Using `seq()`
+
+```{r}
+seq(0, 10)
+```
+```{r}
+seq(0, 10, 2)
+```
+Note that the usual arithmetic operators work fine on vectors. This is one of the strengths of R.
+
+```{r}
+numbers <- seq(0, 10)
+numbers + 1
+```
+Try other operators on the variable `numbers`
+
+
+## Using `rep()`
+
+This is for repeating the same item multiple times. `rep()` can be used for non-numeric vectors as well.
+
+
+```{r}
+rep(1.5, 10)
+```
 # 1
+
+Vectors can be concatenated (joined) by using the `c()` function. Join `v1`, `v2`, and `v3` below to create a single vector.
+
+```{r}
+v1 <- seq(0, 0.9, 0.1)
+v2 <-  1:9
+v3 <- 1:10 * 10
+c(v1, v2, v3)
+```
+# 2
+
+What is the sum of all the elements in the combined vector in the above question?
+
+```{r}
+
+```
+
+# 3
+
+How do you calculate the average (mean) of a vector of numbers? One way is to compute the sum and divide by the number of elements in the vector. The number of elements is given by the `length()` function. There is also the `mean()` function that directly does this. Try both the ways on a vector.
+
+
+# 4
 
 What is the sum of the first 100 integers? You may recall that the formula n(n+1)/2 gives this. Use the formula. Now, can you calculate it without using the formula? 
 
@@ -15,12 +81,59 @@ Hint: How do you generate a vector of numbers?
 
 ```
 
-# 2
+# 5
 
 Which is bigger - the sum of the first 100 odd numbers or the sum of the first 100 even numbers?
-
-Hint: Enter ?seq at the console. If the description is confusing, you could scroll to the examples at the end of that help page.
 
 ```{r}
 
 ```
+
+# 6
+
+Suppose we have a list of BMI values of several individuals. We want to generate a new vector with the BMI level information instead of the numerical values. We write a function to do this conversion.
+
+```{r}
+bmis <- c(15.22, 17.89, 29.91, 24.10, 34.98, 29.08, 19.32, 16.86, 26.65, 28.54, 25.11, 25.08, 18.36, 20.63, 16.29, 30.27, 24.92, 21.01, 24.98, 28.36, 21.50, 22.10, 26.29, 23.05, 27.58, 19.59, 21.54, 21.55, 16.85, 21.87, 26.63, 18.08, 25.05, 26.28, 21.98, 18.31, 22.04, 18.16, 25.07, 19.19, 30.19, 24.61, 21.18)
+
+bmi_to_level <- function(bmi) {
+  if(bmi < 18.5) {
+    "Underweight"
+  } else if(bmi < 25) {
+    "Normal"
+  } else if(bmi < 30) {
+    "Overweight"
+  } else {
+    "Obese"
+  }
+}
+```
+
+But note that the function converts one single BMI value, not the whole vector. How do we convert the vector of numbers to a vector of levels? Of course, we can use a loop. Go over every single item in the BMI list and convert it.
+
+```{r}
+bmi_level <- c() # empty initial vector - this will be filled in inside the loop
+
+for(i in 1:length(bmis)) {
+  ## Do the correct assignment here.
+  ## ith element of the bmis vector should be passed to the function
+  bmi_level[i] <- 0
+}
+
+bmi_level
+```
+When you work with vectors and lists, it is more common in R to avoid using such loops and use the `apply()` family of functions. `sapply()` would be appropriate here. Check if the below chunk gives you the same result as the loop.
+
+```{r}
+bmi_level_apply <- sapply(bmis, bmi_to_level)
+bmi_level_apply
+```
+
+If you notice, the level values are enclosed in quotes. This means they are strings. We can convert them to factors.
+
+```{r}
+bmi_level_apply <- factor(bmi_level_apply)
+bmi_level_apply
+```
+
+Check the difference in the printed results.
