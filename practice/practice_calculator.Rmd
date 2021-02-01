@@ -1,6 +1,5 @@
 ---
-title: "Practice - 01"
-subtitle: "R as a calculator"
+title: "Practice - R as a calculator"
 output: html_document
 ---
 

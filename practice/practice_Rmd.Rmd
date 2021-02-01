@@ -3,20 +3,19 @@ title: "Practice - 00"
 output: html_document
 ---
 
-# Welcome to R!
+# Welcome to R Markdown!
 
 ---
-
-More specifically, welcome to R Markdown.
 
 This is your first practice file. 
 
 * You can open this file in RStudio and "Knit" it to produce an html file.
 * We will use R markdown (Rmd) files like this for the most part of this course. 
 * This is a very flexible format that can be used to make reports, dashboards, presentations, and so on. 
-* We will see these later in the course.
 
-Here is an example of how you can embed R code in this document. Every time you knit this Rmd, you will notice that the code runs again and prints the current time of your computer (Try it!). 
+Here is an example of how you can mix R code into this document. date() is a small piece of R code that prints the current date and time. Every time you knit this Rmd, you will notice that the code runs again and prints the current time of your computer (Try it!). 
+
+R code in an Rmd usually goes into a code "chunk" like the one below.
 
 ```{r}
 date()
@@ -24,7 +23,7 @@ date()
 
 It is also possible to insert R code inline. E.g., the current time is: `r date()` and the time zone is `r Sys.timezone()`.
 
-Hope this helps you imagine the possibility of creating a document that has dynamic elements updated by code.
+Does this help you imagine the possibility of creating a document that has dynamic elements updated by code?
 
 ---
 

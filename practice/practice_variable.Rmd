@@ -1,0 +1,254 @@
+---
+title: "Practice - variable"
+output: html_document
+---
+
+# 1
+
+What will be the result of running "1 + 2 * 4 - 8 / 2"? Make a guess. Try it in the code cell below. Did it match your expected answer?
+
+```{r}
+
+```
+You could also type it at the '>' prompt on the console and get the same answer.
+
+# 2
+
+What is the difference between 10 / 3 and 10 %/% 3? Can you guess what is 10 %% 3? Try these in the cell below.
+
+```{r}
+
+```
+# 3
+
+What is the sum of the first 100 integers? You may recall that the formula n(n+1)/2 gives this. Use the formula. Now, can you calculate it without using the formula? 
+
+Hint: How do you generate a vector of numbers?
+
+```{r}
+
+```
+
+#4 
+
+Which is bigger - the sum of the first 100 odd numbers or the sum of the first 100 even numbers?
+
+Hint: Enter ?seq in the console. If the description is confusing, you could scroll to the examples at the end of that help page.
+
+```{r}
+
+```
+
+
+```{r}
+initial <- 10000
+rate <- 0.08
+years <- 10
+
+final <- initial * (1 + rate)^years
+  
+print(final)
+```
+
+## Conditionals
+
+```{r}
+1 == 1
+1 == 1.001
+1 < 1.001
+
+if(final > 2 * initial) {
+  print("Your money more than doubled!")
+} else {
+  print("Hmm, It could grow more.")
+}
+
+i <- 10
+if((i %% 2 == 0) & (i %% 3 == 0)) { # Logical operator AND
+  print("Divisible by 6")
+}
+  
+## Replace FALSE below with the appropriate conditional expression using the logical OR, |
+if(FALSE) {
+  print("Not divisible by 6")
+}
+```
+
+## Loops
+
+A quick example of a `for` loop:
+
+```{r}
+sum <- 0
+
+for(i in 0:100) {
+  sum <- sum + 1 / factorial(i)
+}
+
+sum
+exp(1)
+```
+
+
+## Vectors
+
+Vectors are objects that contain one or more elements. The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc. Vectors are probably the most common type of object in R.
+
+```{r}
+some_names <- c("Alice", "Bob", "Charlie")
+ages <- c(22, 13, 38, 5, 26)
+birth_years <- 2019 - ages # Vector operation
+print(birth_years)
+
+misc <- c("India", 22.12, sum < 2) # Will be coerced
+class(some_names)
+class(ages)
+class(misc)
+```
+
+```{r}
+more_names <- c("Dan", "Elsa")
+all_names <- c(some_names, more_names)
+all_names
+```
+
+`rep` and `seq` can be used to construct vectors.
+
+```{r}
+twos <- rep(2, 20)
+twos
+
+x <- 1:10
+y <- seq(10, 1, -1) # same as 10:1
+x + y
+```
+
+Indexing a vector (picking an item in a vector)
+
+```{r}
+print(c(x[1], x[10], y[1], y[10]))
+
+x[-1] # drop the item at the index
+
+x[1:5] + y[6:10]
+
+ages > 18
+which(ages > 18)
+
+all_names[ages > 18] # index by logical vector
+all_names[which(ages > 18)] # index by a vector of indices
+```
+  
+You can name the elements in the vector
+
+```{r}
+names(x)
+names(x) <- letters[1:length(x)]
+names(x)
+x
+x[c('g', 'i')] # index by name
+```
+
+Missing values (NA) and NaN
+
+```{r}
+x <- c(2, 4, 0, NA, 10)
+y <- c(1, 2, 0, 10, 1)
+z <- x / y
+is.na(z)
+is.nan(z)
+```
+
+**Exercise**: try the functions `mode()`, `class()`, `str()`, `is.numeric()`, `is.logical()` and `length()` on your objects.
+
+```{r}
+## Complete this
+
+```
+
+Matrices and arrays in R are generalisations of vectors. We will skip them for now and introduce them when we encounter them later. They are rarely required if you are dealing with tabular data.
+
+## Factors
+
+Factors are a way of representing categorical data in R. Factors can take only one of the predefined values called levels. Factors can be defined as ordered or unordered, depending on whether the data has a natural order relevant to the problem at hand.
+
+```{r}
+days <- factor(c("Mon", "Mon", "Thu", "Tue"),
+               levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"),
+               ordered = TRUE)
+
+days[3]
+
+```
+
+## Lists
+
+Lists are the most flexible type of objects in R. Lists can contain just about any type of objects, including lists. They could also be sometimes complex to manipulate. Use lists only when you need them.
+
+```{r}
+a <- list(name = "Alice", age = 11, height = 110)
+str(a)
+
+a$age
+a[[2]]
+```
+
+<br/>
+
+**`[]` vs `[[]]` while indexing a list**
+
+```{r}
+a[2]
+class(a$age)
+class(a[2])
+class(a[[2]])
+```
+
+## Data Frames
+
+Data frames can be thought of as lists of atomic vectors all having the same length. A data frame represents a table arranged in rows and columns.
+
+```{r}
+students <- list(name = c('Alice', 'Bob', 'Charlie'),
+                age = c(11, 10, 11),
+                status = factor(c("P", "A", "P")))
+
+students
+
+students_df <- as.data.frame(students)
+
+students_df
+str(students_df)
+```
+
+## Functions
+
+```{r}
+calculate_interest <- function(p, r, n) {
+  # complete this
+}
+
+final <- calculate_interest(initial, rate, years)
+
+final
+```
+
+
+What is happening here? Add appropriate spaces and parentheses to make it readable (and make sure you never write anything like this!):
+
+```{r}
+1:10-1-1:(11-1)
+```
+
+
+Generate a vector containing the Fibonacci series, 1 1 2 3 5 8 13 21
+
+```{r}
+fib_series <- function(n) {
+  ## Complete this
+}
+
+## Complete this
+```
+
+

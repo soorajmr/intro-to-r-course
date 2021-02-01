@@ -1,6 +1,5 @@
 ---
-title: "Practice - 02"
-subtitle: 'Vectors'
+title: "Practice - Vectors"
 output: html_document
 ---
 
