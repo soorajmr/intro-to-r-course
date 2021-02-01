@@ -1,0 +1,469 @@
+ua_no,ua,country,Full Address,Latitude,Longitude
+1,Greater Mumbai ,", India","Greater Mumbai  , India ",18.9403642,72.834503
+2,Delhi  ,", India","Delhi   , India ",28.7040592,77.1024902
+3,Kolkata ,", India","Kolkata  , India ",22.572646,88.363895
+4,Chennai  $,", India","Chennai  $ , India ",13.0826802,80.2707184
+5,Bruhat Bangalore ,", India","Bruhat Bangalore  , India ",12.9436052,77.5550292
+6,Hyderabad   @,", India","Hyderabad   @ , India ",17.385044,78.486671
+7,Ahmadabad ,", India","Ahmadabad  , India ",23.022505,72.5713621
+8,Pune ,", India","Pune  , India ",18.5204303,73.8567437
+9,Surat ,", India","Surat  , India ",21.1702401,72.8310607
+10,Jaipur *,", India","Jaipur * , India ",26.9124336,75.7872709
+11,Kanpur ,", India","Kanpur  , India ",26.449923,80.3318736
+12,Lucknow ,", India","Lucknow  , India ",26.8466937,80.946166
+13,Nagpur ,", India","Nagpur  , India ",21.1458004,79.0881546
+14,Ghaziabad ,", India","Ghaziabad  , India ",28.6691565,77.4537578
+15,Indore ,", India","Indore  , India ",22.7195687,75.8577258
+16,Coimbatore  $,", India","Coimbatore  $ , India ",11.0168445,76.9558321
+17,Kochi ,", India","Kochi  , India ",9.9312328,76.2673041
+18,Patna ,", India","Patna  , India ",25.5940947,85.1375645
+19,Kozhikode ,", India","Kozhikode  , India ",11.2587531,75.78041
+20,Bhopal ,", India","Bhopal  , India ",23.2599333,77.412615
+21,Thrissur ,", India","Thrissur  , India ",10.5276416,76.2144349
+22,Vadodara ,", India","Vadodara  , India ",22.3071588,73.1812187
+23,Agra ,", India","Agra  , India ",27.1766701,78.0080745
+24,Visakhapatnam @,", India","Visakhapatnam @ , India ",17.6868159,83.2184815
+25,Malappuram ,", India","Malappuram  , India ",11.0509762,76.0710967
+26,Thiruvananthapuram ,", India","Thiruvananthapuram  , India ",8.5241391,76.9366376
+27,Kannur ,", India","Kannur  , India ",11.8744775,75.3703662
+28,Ludhiana,", India","Ludhiana , India ",30.900965,75.8572758
+29,Nashik ,", India","Nashik  , India ",19.9974533,73.7898023
+30,Vijayawada @,", India","Vijayawada @ , India ",16.5061743,80.6480153
+31,Madurai  $,", India","Madurai  $ , India ",9.9252007,78.1197754
+32,Varanasi ,", India","Varanasi  , India ",25.3176452,82.9739144
+33,Meerut ,", India","Meerut  , India ",28.9844618,77.7064137
+34,Faridabad,", India","Faridabad , India ",28.4089123,77.3177894
+35,Rajkot ,", India","Rajkot  , India ",22.3038945,70.8021599
+36,Jamshedpur ,", India","Jamshedpur  , India ",22.8045665,86.2028754
+37,Jabalpur ,", India","Jabalpur  , India ",23.181467,79.9864071
+38,Srinagar ,", India","Srinagar  , India ",34.0836708,74.7972825
+39,Asansol !,", India","Asansol ! , India ",23.6888636,86.9660638
+40,Vasai-Virar City [9],", India","Vasai-Virar City [9] , India ",19.3919275,72.8397317
+41,Allahabad ,", India","Allahabad  , India ",25.4358011,81.846311
+42,Dhanbad ,", India","Dhanbad  , India ",23.7956531,86.4303859
+43,Aurangabad ,", India","Aurangabad  , India ",19.8761653,75.3433139
+44,Amritsar ,", India","Amritsar  , India ",31.6339793,74.8722642
+45,Jodhpur ,", India","Jodhpur  , India ",26.2389469,73.0243094
+46,Ranchi ,", India","Ranchi  , India ",23.3440997,85.309562
+47,Raipur ,", India","Raipur  , India ",21.2513844,81.6296413
+48,Kollam ,", India","Kollam  , India ",8.8932118,76.6141396
+49,Gwalior ,", India","Gwalior  , India ",26.2182871,78.1828308
+50,Durg-Bhilainagar ,", India","Durg-Bhilainagar  , India ",21.1904494,81.2849169
+51,Tiruchirappalli  $,", India","Tiruchirappalli  $ , India ",10.7904833,78.7046725
+52,Kota*,", India","Kota* , India ",25.2138156,75.8647527
+53,Mysore U. A.,", India","Mysore U. A. , India ",12.2958104,76.6393805
+54,Bareilly ,", India","Bareilly  , India ",28.3670355,79.4304381
+55,Chandigarh  ,", India","Chandigarh   , India ",30.7333148,76.7794179
+56,Tiruppur  $,", India","Tiruppur  $ , India ",11.1085242,77.3410656
+57,Guwahati ,", India","Guwahati  , India ",26.1445169,91.7362365
+58,Solapur [11],", India","Solapur [11] , India ",17.6599188,75.9063906
+59,Hubli-Dharwad,", India","Hubli-Dharwad , India ",15.3647083,75.1239547
+60,Salem  $,", India","Salem  $ , India ",11.664325,78.1460142
+61,Aligarh ,", India","Aligarh  , India ",27.8973944,78.0880129
+62,Gurgaon ,", India","Gurgaon  , India ",28.4594965,77.0266383
+63,Moradabad $! Xy,", India","Moradabad $! Xy , India ",28.8225028,78.7790583
+64,Bhubaneswar  ,", India","Bhubaneswar   , India ",20.2960587,85.8245398
+65,Jalandhar ,", India","Jalandhar  , India ",31.3260152,75.5761829
+66,Warangal ,", India","Warangal  , India ",17.9689008,79.5940544
+67,Bhiwandi ,", India","Bhiwandi  , India ",19.2812547,73.0482912
+68,Dehradun  $,", India","Dehradun  $ , India ",30.3164945,78.0321918
+69,Siliguri ,", India","Siliguri  , India ",26.7271012,88.3952861
+70,Saharanpur,", India","Saharanpur , India ",29.9680035,77.5552066
+71,Gorakhpur ,", India","Gorakhpur  , India ",26.7605545,83.3731675
+72,Guntur ,", India","Guntur  , India ",16.3066525,80.4365402
+73,Cuttack ,", India","Cuttack  , India ",20.462521,85.8829895
+74,Jammu   ,", India","Jammu    , India ",32.7266016,74.8570259
+75,Puducherry  ,", India","Puducherry   , India ",11.9415915,79.8083133
+76,Amravati [13],", India","Amravati [13] , India ",20.9319821,77.7523039
+77,Bikaner **,", India","Bikaner ** , India ",28.0229348,73.3119159
+78,Noida,", India","Noida , India ",28.5355161,77.3910265
+79,Mangalore ,", India","Mangalore  , India ",12.9141417,74.8559568
+80,Belgaum ,", India","Belgaum  , India ",15.8496953,74.4976741
+81,Bhavnagar ,", India","Bhavnagar  , India ",21.7644725,72.1519304
+82,Firozabad  &,", India","Firozabad  & , India ",27.1591961,78.3957331
+83,Jamnagar ,", India","Jamnagar  , India ",22.4707019,70.05773
+84,Durgapur ,", India","Durgapur  , India ",23.5204443,87.3119227
+85,Malegaon ,", India","Malegaon  , India ",20.5579034,74.5089457
+86,Bokaro Steel City ,", India","Bokaro Steel City  , India ",23.6692956,86.151112
+87,Kolhapur ,", India","Kolhapur  , India ",16.7049873,74.2432527
+88,Nellore ,", India","Nellore  , India ",14.4425987,79.986456
+89,Raurkela   ,", India","Raurkela    , India ",22.260423,84.8535844
+90,Ajmer ,", India","Ajmer  , India ",26.4498954,74.6399163
+91,Nanded-Waghala [14],", India","Nanded-Waghala [14] , India ",19.1383,77.321
+92,Jhansi ,", India","Jhansi  , India ",25.4484257,78.5684594
+93,Gulbarga U. A.,", India","Gulbarga U. A. , India ",17.3103594,76.8729891
+94,Erode  $,", India","Erode  $ , India ",11.3410364,77.7171642
+95,Ujjain 22,", India","Ujjain 22 , India ",23.1764665,75.7885163
+96,Sangli ,", India","Sangli  , India ",16.8523973,74.5814773
+97,Tirunelveli ,", India","Tirunelveli  , India ",8.7139126,77.7566523
+98,Muzaffarnagar ,", India","Muzaffarnagar  , India ",29.4726817,77.7085091
+99,Vellore ,", India","Vellore  , India ",12.9165167,79.1324986
+100,Kurnool  ,", India","Kurnool   , India ",15.8281257,78.0372792
+101,Rajahmundry ,", India","Rajahmundry  , India ",17.0005383,81.8040345
+102,Gaya ,", India","Gaya  , India ",24.7913957,85.0002336
+103,Udaipur ,", India","Udaipur  , India ",24.585445,73.712479
+104,Tirupati  ,", India","Tirupati   , India ",13.6287557,79.4191795
+105,Jalgaon,", India","Jalgaon , India ",21.0076578,75.5626039
+106,Mathura ,", India","Mathura  , India ",27.4924134,77.673673
+107,Cherthala ,", India","Cherthala  , India ",9.6741363,76.3400963
+108,Bilaspur ,", India","Bilaspur  , India ",22.0796545,82.1409152
+109,Patiala ,", India","Patiala  , India ",30.3397809,76.3868797
+110,Panipat ,", India","Panipat  , India ",29.3909464,76.9635023
+111,Kakinada ,", India","Kakinada  , India ",16.9890648,82.2474648
+112,Davanagere,", India","Davanagere , India ",14.4644085,75.921758
+113,Kayamkulam ,", India","Kayamkulam  , India ",9.1748422,76.5013352
+114,Akola,", India","Akola , India ",20.7002159,77.0081678
+115,Imphal ,", India","Imphal  , India ",24.8170111,93.9368439
+116,Bhagalpur ,", India","Bhagalpur  , India ",25.3478004,86.9824288
+117,Thoothukkudi ,", India","Thoothukkudi  , India ",8.7641661,78.1348361
+118,Bellary,", India","Bellary , India ",15.1393932,76.9214428
+119,Agartala #,", India","Agartala # , India ",23.831457,91.2867777
+120,Muzaffarpur ,", India","Muzaffarpur  , India ",26.1196607,85.390982
+121,Yamunanagar ,", India","Yamunanagar  , India ",30.1290485,77.2673901
+122,Latur,", India","Latur , India ",18.4087934,76.5603828
+123,Ahmadnagar ,", India","Ahmadnagar  , India ",19.0948287,74.7479789
+124,Dhule,", India","Dhule , India ",20.9042201,74.7748979
+125,Rohtak  #,", India","Rohtak  # , India ",28.8955152,76.606611
+126,Sagar ,", India","Sagar  , India ",23.838805,78.7378068
+127,Korba ,", India","Korba  , India ",22.3594501,82.7500595
+128,Bhilwara *,", India","Bhilwara * , India ",25.3407388,74.6313183
+129,Kottayam ,", India","Kottayam  , India ",9.5915668,76.5221531
+130,Brahmapur,", India","Brahmapur , India ",19.3149618,84.7940911
+131,Shillong ,", India","Shillong  , India ",25.5787726,91.8932535
+132,Rampur ,", India","Rampur  , India ",28.798299,79.0220287
+133,Shahjahanpur ,", India","Shahjahanpur  , India ",27.8753399,79.9147268
+134,Barddhaman ,", India","Barddhaman  , India ",23.2324214,87.8614793
+135,Kadapa ,", India","Kadapa  , India ",14.4673154,78.8242089
+136,Alwar ,", India","Alwar  , India ",27.5529907,76.6345735
+137,Anantapur ,", India","Anantapur  , India ",14.6818877,77.6005911
+138,Bijapur,", India","Bijapur , India ",16.8301708,75.710031
+139,Ichalkaranji ,", India","Ichalkaranji  , India ",16.688621,74.4593101
+140,Shimoga,", India","Shimoga , India ",13.9299299,75.568101
+141,Chandrapur,", India","Chandrapur , India ",19.9615398,79.2961468
+142,Junagadh,", India","Junagadh , India ",21.5222203,70.4579436
+143,English Bazar ,", India","English Bazar  , India ",25.0108408,88.1410967
+144,Purnia ,", India","Purnia  , India ",25.7771391,87.4752551
+145,Nizamabad,", India","Nizamabad , India ",18.6725047,78.0940867
+146,Hardwar ,", India","Hardwar  , India ",29.9456906,78.1642478
+147,Darbhanga ,", India","Darbhanga  , India ",26.1542045,85.8918454
+148,Parbhani,", India","Parbhani , India ",19.2608384,76.774776
+149,Hisar ,", India","Hisar  , India ",29.1491875,75.7216527
+150,Baharampur ,", India","Baharampur  , India ",24.0982607,88.268411
+151,Tumkur @,", India","Tumkur @ , India ",13.3378762,77.117325
+152,Karnal ,", India","Karnal  , India ",29.6856929,76.9904825
+153,Habra ,", India","Habra  , India ",22.8408094,88.6535105
+154,Kharagpur ,", India","Kharagpur  , India ",22.34601,87.2319753
+155,Karimnagar ,", India","Karimnagar  , India ",18.4385553,79.1288412
+156,Biharsharif,", India","Biharsharif , India ",25.2049738,85.517437
+157,Palakkad ,", India","Palakkad  , India ",10.7867303,76.6547932
+158,Aizawl,", India","Aizawl , India ",23.7307175,92.7173106
+159,Sonipar  ,", India","Sonipar   , India ",28.9930823,77.0150735
+160,Dindigul ,", India","Dindigul  , India ",10.3623794,77.9694579
+161,Farrukhabad-cum-Fatehgarh,", India","Farrukhabad-cum-Fatehgarh , India ",27.3825853,79.5840195
+162,Thanjavur ,", India","Thanjavur  , India ",10.7869994,79.1378274
+163,Santipur ,", India","Santipur  , India ",23.2645399,88.4380966
+164,Dewas 28,", India","Dewas 28 , India ",22.9380956,76.0127156
+165,Anand ,", India","Anand  , India ",22.5645175,72.928871
+166,Bathinda,", India","Bathinda , India ",30.210994,74.9454745
+167,Jalna,", India","Jalna , India ",19.8346659,75.8816345
+168,Satna ,", India","Satna  , India ",24.6005075,80.8322428
+169,Navsari ,", India","Navsari  , India ",20.9467019,72.9520348
+170,Maunath Bhanjan,", India","Maunath Bhanjan , India ",25.9462838,83.5610119
+171,Ratlam ,", India","Ratlam  , India ",23.3315103,75.0366677
+172,Sambalpur   ,", India","Sambalpur    , India ",21.4668716,83.9811665
+173,Ranipet $,", India","Ranipet $ , India ",12.9487403,79.318978
+174,Hapur,", India","Hapur , India ",28.7305798,77.7758825
+175,Khammam ,", India","Khammam  , India ",17.2472528,80.1514447
+176,Arrah,", India","Arrah , India ",25.5541358,84.6664797
+177,Etawah,", India","Etawah , India ",26.7829103,79.027659
+178,Faizabad ,", India","Faizabad  , India ",26.7729751,82.1457934
+179,Wadhwan ,", India","Wadhwan  , India ",22.711454,71.6732681
+180,Bharatpur ,", India","Bharatpur  , India ",27.2151863,77.5029996
+181,Ramagundam ,", India","Ramagundam  , India ",18.7518652,79.5133701
+182,Begusarai #,", India","Begusarai # , India ",25.4181638,86.1271542
+183,Morvi ,", India","Morvi  , India ",22.8251874,70.8490809
+184,Eluru ,", India","Eluru  , India ",16.7106604,81.0952431
+185,Ganganagar ,", India","Ganganagar  , India ",29.9093759,73.8799805
+186,Dankuni ,", India","Dankuni  , India ",22.6809296,88.2970142
+187,Gandhidham,", India","Gandhidham , India ",23.075297,70.133673
+188,Mirzapur-cum-Vindhyachal ,", India","Mirzapur-cum-Vindhyachal  , India ",25.1336987,82.5644344
+189,Sikar ,", India","Sikar  , India ",27.6093912,75.1397935
+190,Alappuzha ,", India","Alappuzha  , India ",9.4980667,76.3388484
+191,Katihar ,", India","Katihar  , India ",25.5540648,87.5591073
+192,Vizianagaram ,", India","Vizianagaram  , India ",18.1066576,83.3955506
+193,Dhulian ,", India","Dhulian  , India ",24.6706654,87.9481846
+194,Roorkee ,", India","Roorkee  , India ",29.8542626,77.8880002
+195,Ottappalam ,", India","Ottappalam  , India ",10.7766702,76.3759375
+196,Rewa,", India","Rewa , India ",24.5362477,81.3036946
+197,Bulandshahar ,", India","Bulandshahar  , India ",28.406963,77.8498292
+198,Sivakasi   $,", India","Sivakasi   $ , India ",9.4532852,77.802417
+199,Ranaghat ,", India","Ranaghat  , India ",23.1744548,88.5605732
+200,Karur ,", India","Karur  , India ",10.9600778,78.0766036
+201,Raichur $,", India","Raichur $ , India ",16.216018,77.3565608
+202,Udhagamandalam  $,", India","Udhagamandalam  $ , India ",11.4102038,76.6950324
+203,Kathgodam ,", India","Kathgodam  , India ",29.2693264,79.5441198
+204,Pali,", India","Pali , India ",25.7780623,73.331147
+205,Hosur ,", India","Hosur  , India ",12.7409127,77.8252923
+206,Kanhangad ,", India","Kanhangad  , India ",12.3310887,75.091508
+207,Silchar ,", India","Silchar  , India ",24.8332708,92.7789054
+208,Nadiad ,", India","Nadiad  , India ",22.6915853,72.8633635
+209,Nagercoil,", India","Nagercoil , India ",8.1832857,77.4118996
+210,Bharuch ,", India","Bharuch  , India ",21.7051358,72.9958748
+211,Murwara (Katni) 30,", India","Murwara (Katni) 30 , India ",23.8343441,80.3893814
+212,Kancheepuram ,", India","Kancheepuram  , India ",12.818456,79.6946586
+213,Sambhal $,", India","Sambhal $ , India ",28.5903614,78.5717631
+214,Singrauli 31,", India","Singrauli 31 , India ",24.1992101,82.6645469
+215,Proddatur ,", India","Proddatur  , India ",14.752624,78.5541053
+216,Porbandar ,", India","Porbandar  , India ",21.6416979,69.6293059
+217,Bidar ,", India","Bidar  , India ",17.9103939,77.5199079
+218,Chapra ,", India","Chapra  , India ",25.7811397,84.7543413
+219,Munger,", India","Munger , India ",25.3707993,86.4733903
+220,Nandyal ,", India","Nandyal  , India ",15.4776876,78.487285
+221,Panchkula,", India","Panchkula , India ",30.6942091,76.860565
+222,Burhanpur,", India","Burhanpur , India ",21.3145021,76.2180095
+223,Mahbubnagar ,", India","Mahbubnagar  , India ",16.7488379,78.0035172
+224,Ongole ,", India","Ongole  , India ",15.5057232,80.049922
+225,Hospet $,", India","Hospet $ , India ",15.2688542,76.3909241
+226,Ambala  ,", India","Ambala   , India ",30.3752011,76.782122
+227,Bhusawal ,", India","Bhusawal  , India ",21.0417707,75.7875517
+228,Deoghar %%,", India","Deoghar %% , India ",24.485179,86.694785
+229,Haldia,", India","Haldia , India ",22.0627164,88.0832934
+230,Khandwa,", India","Khandwa , India ",21.8314037,76.3497612
+231,Puri,", India","Puri , India ",19.8134554,85.8312359
+232,Morena,", India","Morena , India ",26.4947172,77.9940222
+233,Raiganj ,", India","Raiganj  , India ",25.6328682,88.1319057
+234,Amroha #,", India","Amroha # , India ",28.9051778,78.467318
+235,Bhind,", India","Bhind , India ",26.5637768,78.7860916
+236,Hardoi ,", India","Hardoi  , India ",27.3965071,80.1250479
+237,Bhiwani,", India","Bhiwani , India ",28.7974684,76.1322058
+238,"Navi Mumbai (Panvel, Raigarh)",", India","Navi Mumbai (Panvel, Raigarh) , India ",18.9894007,73.1175162
+239,Ambala,", India","Ambala , India ",30.3752011,76.782122
+240,Kumarapalayam  *,", India","Kumarapalayam  * , India ",11.4362628,77.7232172
+241,Fatehpur,", India","Fatehpur , India ",25.8499808,80.8986502
+242,Kasaragod ,", India","Kasaragod  , India ",12.4995966,74.9869276
+243,Rae Bareli,", India","Rae Bareli , India ",26.2144806,81.2528139
+244,Mahesana ,", India","Mahesana  , India ",23.5879607,72.3693252
+245,Orai ,", India","Orai  , India ",25.987523,79.4488695
+246,Chhindwara ,", India","Chhindwara  , India ",22.057437,78.9381729
+247,Bhuj ,", India","Bhuj  , India ",23.2419997,69.6669324
+248,Sitapur ,", India","Sitapur  , India ",27.5680156,80.6789519
+249,Bahraich,", India","Bahraich , India ",27.5705152,81.5976672
+250,Veraval ,", India","Veraval  , India ",20.9158979,70.3628516
+251,Phusro ,", India","Phusro  , India ",23.7622641,86.0020693
+252,Adoni ,", India","Adoni  , India ",15.6318824,77.2758833
+253,Modinagar ,", India","Modinagar  , India ",28.8344396,77.5698527
+254,Sirsa,", India","Sirsa , India ",29.5320731,75.0317734
+255,Krishnanagar ,", India","Krishnanagar  , India ",23.4013101,88.5021152
+256,Karaikkudi  $,", India","Karaikkudi  $ , India ",10.0763282,78.7803083
+257,Guna 33,", India","Guna 33 , India ",24.6323648,77.3001762
+258,Jaunpur,", India","Jaunpur , India ",25.7464145,82.6837033
+259,Madanapalle ,", India","Madanapalle  , India ",13.5560496,78.5010007
+260,Panvel,", India","Panvel , India ",18.9894007,73.1175162
+261,Shivpuri 34,", India","Shivpuri 34 , India ",25.4320478,77.6643815
+262,Neyveli  $,", India","Neyveli  $ , India ",11.5389807,79.4793861
+263,Baleshwar  ,", India","Baleshwar   , India ",21.4933578,86.9134794
+264,Unnao,", India","Unnao , India ",26.5393449,80.4878195
+265,S.A.S. Nagar ,", India","S.A.S. Nagar  , India ",30.6496486,76.7567368
+266,Chittoor ,", India","Chittoor  , India ",13.217176,79.1003289
+267,Nabadwip ,", India","Nabadwip  , India ",23.4036694,88.3658569
+268,Cuddalore,", India","Cuddalore , India ",11.7480419,79.7713687
+269,Hassan ,", India","Hassan  , India ",13.0033234,76.1003894
+270,Gadag-Betigeri,", India","Gadag-Betigeri , India ",15.4315406,75.6355149
+271,Shimla ,", India","Shimla  , India ",31.1048145,77.1734033
+272,Bahadurgarh,", India","Bahadurgarh , India ",28.6913756,76.9314064
+273,Valsad ,", India","Valsad  , India ",20.5992349,72.9342451
+274,Machilipatnam,", India","Machilipatnam , India ",16.1808917,81.1302716
+275,Medinipur,", India","Medinipur , India ",22.4256613,87.3198819
+276,Jalpaiguri ,", India","Jalpaiguri  , India ",26.5214579,88.7195567
+277,Hoshiarpur,", India","Hoshiarpur , India ",31.5143178,75.911483
+278,Jind,", India","Jind , India ",29.325508,76.2997909
+279,Kumbakonam ,", India","Kumbakonam  , India ",10.9601852,79.3844976
+280,Udupi ,", India","Udupi  , India ",13.3408807,74.7421427
+281,Tonk,", India","Tonk , India ",26.1659063,75.7962852
+282,Lakhimpur *,", India","Lakhimpur * , India ",27.9462395,80.7787163
+283,Tenali,", India","Tenali , India ",16.237933,80.6444099
+284,Balurghat ,", India","Balurghat  , India ",25.2372834,88.7830612
+285,Vapi ^,", India","Vapi ^ , India ",20.3893155,72.9106202
+286,Mancherial ,", India","Mancherial  , India ",18.8713826,79.4443099
+287,Moga ,", India","Moga  , India ",30.8230114,75.1734471
+288,Rajnandgaon,", India","Rajnandgaon , India ",21.0972123,81.0337501
+289,Chirala ,", India","Chirala  , India ",15.8166616,80.35869
+290,Godhra  $,", India","Godhra  $ , India ",22.7788044,73.6142795
+291,Robertson Pet  £,", India","Robertson Pet  £ , India ",12.9551189,78.2698622
+292,Hathras ,", India","Hathras  , India ",27.5980718,78.0492265
+293,Pathankot ,", India","Pathankot  , India ",32.2733352,75.6522066
+294,Banda ,", India","Banda  , India ",25.4762689,80.3395498
+295,Anantnag ,", India","Anantnag  , India ",33.7311255,75.1487007
+296,Budaun,", India","Budaun , India ",28.0311101,79.1271229
+297,Batala ,", India","Batala  , India ",31.8195248,75.2035876
+298,Saharsa,", India","Saharsa , India ",25.8773651,86.5927887
+299,Pilibhit U.A,", India","Pilibhit U.A , India ",28.62494,79.8075272
+300,Vidisha 35,", India","Vidisha 35 , India ",23.522512,77.8148015
+301,Bettiah ,", India","Bettiah  , India ",26.8025577,84.520147
+302,Thanesar,", India","Thanesar , India ",29.9698827,76.8192941
+303,Kishangarh,", India","Kishangarh , India ",26.5866303,74.8541759
+304,Rudrapur ,", India","Rudrapur  , India ",28.9875082,79.4141214
+305,Nalgonda ,", India","Nalgonda  , India ",17.0574663,79.2684169
+306,Dibrugarh ,", India","Dibrugarh  , India ",27.4728327,94.9119621
+307,Jorhat ,", India","Jorhat  , India ",26.7509207,94.2036696
+308,Hazaribag ,", India","Hazaribag  , India ",23.9924669,85.3636758
+309,Mughalsarai ,", India","Mughalsarai  , India ",25.2837754,83.1155672
+310,Hindupur,", India","Hindupur , India ",13.8222599,77.5009298
+311,Beawar ,", India","Beawar  , India ",26.104585,74.3199038
+312,Bhadravati@ *,", India","Bhadravati@ * , India ",13.8275718,75.7063783
+313,Hanumangarh,", India","Hanumangarh , India ",29.5815012,74.3294199
+314,Raigarh ,", India","Raigarh  , India ",21.8974003,83.3949632
+315,Satara ,", India","Satara  , India ",17.6804639,74.018261
+316,Nagaon ,", India","Nagaon  , India ",26.348009,92.6838111
+317,Hajipur,", India","Hajipur , India ",25.6924354,85.208324
+318,Damoh ,", India","Damoh  , India ",23.8323022,79.4386591
+319,Barabanki ,", India","Barabanki  , India ",26.9268042,81.1833809
+320,Chhatarpur ,", India","Chhatarpur  , India ",24.9167821,79.5910058
+321,Sasaram,", India","Sasaram , India ",24.9538803,84.0142866
+322,Srikakulam ,", India","Srikakulam  , India ",18.2949165,83.8938018
+323,Bhimavaram ,", India","Bhimavaram  , India ",16.544893,81.521241
+324,Bid,", India","Bid , India ",18.990088,75.7531324
+325,Chitradurga ,", India","Chitradurga  , India ",14.2250932,76.3980464
+326,Abohar,", India","Abohar , India ",30.146861,74.2008185
+327,Tiruvannamalai,", India","Tiruvannamalai , India ",12.2252841,79.0746957
+328,Kaithal,", India","Kaithal , India ",29.8042758,76.4039016
+329,Giridih  ,", India","Giridih   , India ",24.19135,86.2996368
+330,Rewari  #,", India","Rewari  # , India ",28.1919738,76.6190774
+331,Basirhat UA,", India","Basirhat UA , India ",22.6590646,88.8572047
+332,Khurja ,", India","Khurja  , India ",28.2489801,77.854903
+333,Mandsaur,", India","Mandsaur , India ",24.0734356,75.0679018
+334,Palanpur ,", India","Palanpur  , India ",24.1724338,72.434581
+335,Anklesvar ,", India","Anklesvar  , India ",21.6264236,73.0151984
+336,Adilabad ,", India","Adilabad  , India ",19.6640542,78.531961
+337,Gonda ,", India","Gonda  , India ",27.1339874,81.9618979
+338,Kolar,", India","Kolar , India ",13.1362143,78.1290986
+339,Yavatmal ,", India","Yavatmal  , India ",20.3899385,78.1306846
+340,Bankura,", India","Bankura , India ",23.2312686,87.0783875
+341,Mandya @,", India","Mandya @ , India ",12.5218157,76.8951488
+342,Dehri,", India","Dehri , India ",24.9061239,84.191193
+343,Mainpuri ,", India","Mainpuri  , India ",27.2281937,79.0251659
+344,Kamptee ,", India","Kamptee  , India ",21.2242712,79.1893608
+345,Malerkotla,", India","Malerkotla , India ",30.5245806,75.8783443
+346,Pollachi ,", India","Pollachi  , India ",10.6608925,77.004759
+347,Siwan,", India","Siwan , India ",26.1689087,84.3962535
+348,Chakdaha ,", India","Chakdaha  , India ",23.0765247,88.5293319
+349,Patan ,", India","Patan  , India ",23.8500156,72.1210274
+350,Khargone ,", India","Khargone  , India ",21.8335244,75.6149893
+351,Lalitpur,", India","Lalitpur , India ",24.6911707,78.4138183
+352,Dhaulpur ,", India","Dhaulpur  , India ",26.6965521,77.8907576
+353,Gondiya,", India","Gondiya , India ",21.4549477,80.1960712
+354,Ramgarh  ,", India","Ramgarh   , India ",29.4464076,79.5596415
+355,Palwal ,", India","Palwal  , India ",28.1472852,77.3259878
+356,Etah ,", India","Etah  , India ",27.5625106,78.6654148
+357,Dohad ,", India","Dohad  , India ",22.8344992,74.2606185
+358,Rajapalayam $,", India","Rajapalayam $ , India ",9.4514843,77.5543425
+359,Darjiling ,", India","Darjiling  , India ",27.0410218,88.2662745
+360,Botad,", India","Botad , India ",22.1722509,71.663622
+361,Gangapur City ,", India","Gangapur City  , India ",26.4833211,76.7340094
+362,Deoria,", India","Deoria , India ",26.4270039,83.804868
+363,Bhadrak ,", India","Bhadrak  , India ",21.0573616,86.4962996
+364,Neemuch ,", India","Neemuch  , India ",24.4737663,74.8726497
+365,Khanna,", India","Khanna , India ",30.7070769,76.2169907
+366,Changanassery ,", India","Changanassery  , India ",9.4464941,76.5402167
+367,Alipurduar ,", India","Alipurduar  , India ",26.4922164,89.5319627
+368,Puruliya ,", India","Puruliya  , India ",23.3322026,86.3616405
+369,Tinsukia ,", India","Tinsukia  , India ",27.4885539,95.355758
+370,Guntakal,", India","Guntakal , India ",15.1660706,77.3769836
+371,Pithampur,", India","Pithampur , India ",22.611121,75.6772689
+372,Motihari#,", India","Motihari# , India ",26.6438482,84.9040337
+373,Jagdalpur  &,", India","Jagdalpur  & , India ",19.0853926,82.018317
+374,Gudiyatham UA $,", India","Gudiyatham UA $ , India ",12.9397,78.8644
+375,Dimapur,", India","Dimapur , India ",25.9091406,93.7265605
+376,Jangipur ,", India","Jangipur  , India ",24.4589833,88.1047287
+377,Dharmavaram,", India","Dharmavaram , India ",14.4124551,77.7201031
+378,Kashipur,", India","Kashipur , India ",29.2104232,78.9618845
+379,Sawai Madhopur *,", India","Sawai Madhopur * , India ",26.012373,76.3560109
+380,Ambikapur ,", India","Ambikapur  , India ",23.1294374,83.1861138
+381,Ghazipur ,", India","Ghazipur  , India ",25.5877901,83.5783078
+382,Medininagar ,", India","Medininagar  , India ",24.0465121,84.0768462
+383,Churu UA,", India","Churu UA , India ",28.2889848,74.9664731
+384,Kothagudem ,", India","Kothagudem  , India ",17.5559725,80.6169577
+385,Chirkunda  ,", India","Chirkunda   , India ",23.747887,86.7868768
+386,Nawada ,", India","Nawada  , India ",24.8866859,85.5434572
+387,Barshi,", India","Barshi , India ",18.2333856,75.6941478
+388,Jhunjhunun,", India","Jhunjhunun , India ",28.1317038,75.4022233
+389,Chikmagalur,", India","Chikmagalur , India ",13.3161441,75.7720439
+390,Jetpur Navagadh,", India","Jetpur Navagadh , India ",21.7546665,70.6179777
+391,Gudivada,", India","Gudivada , India ",16.4344461,80.9931388
+392,Baran,", India","Baran , India ",25.1011438,76.5131637
+393,Hoshangabad,", India","Hoshangabad , India ",22.7518961,77.7288655
+394,Amreli UA,", India","Amreli UA , India ",21.6078886,71.2280736
+395,Phagwara ,", India","Phagwara  , India ",31.2231589,75.7670466
+396,Pudukkottai,", India","Pudukkottai , India ",10.3832867,78.800129
+397,Narasaraopet ,", India","Narasaraopet  , India ",16.2359181,80.0496499
+398,Vaniyambadi UA,", India","Vaniyambadi UA , India ",12.6793005,78.6227991
+399,Baripada  *,", India","Baripada  * , India ",21.9319838,86.7465928
+400,Muktsar,", India","Muktsar , India ",30.4761773,74.5121599
+401,Barnala,", India","Barnala , India ",30.3819446,75.5467979
+402,Chittaurgarh,", India","Chittaurgarh , India ",24.8829177,74.6229699
+403,Makrana ,", India","Makrana  , India ",27.0285581,74.714621
+404,Azamgarh ,", India","Azamgarh  , India ",26.0739138,83.1859495
+405,Sultanpur ,", India","Sultanpur  , India ",26.2585371,82.0659858
+406,Bijnor ,", India","Bijnor  , India ",29.3731673,78.1350904
+407,Chalakudy ,", India","Chalakudy  , India ",10.3070105,76.3340589
+408,Panaji U.A,", India","Panaji U.A , India ",15.4909301,73.8278496
+409,Basti,", India","Basti , India ",26.8139844,82.7629893
+410,Gangawati ,", India","Gangawati  , India ",15.4319267,76.5280701
+411,Kothamangalam ,", India","Kothamangalam  , India ",10.0602601,76.6351831
+412,Ambur,", India","Ambur , India ",12.7801672,78.7177271
+413,Itarsi UA 42,", India","Itarsi UA 42 , India ",22.6114536,77.7623321
+414,Chandausi,", India","Chandausi , India ",28.4558235,78.7849815
+415,Siddipet ,", India","Siddipet  , India ",18.1017996,78.8519601
+416,Bagaha,", India","Bagaha , India ",27.1221959,84.0722375
+417,Achalpur [19],", India","Achalpur [19] , India ",21.2591538,77.5104359
+418,Gondal,", India","Gondal , India ",21.9611708,70.7938777
+419,Bagalkot,", India","Bagalkot , India ",16.1691096,75.6615029
+420,Osmanabad,", India","Osmanabad , India ",18.185332,76.0419642
+421,Ballia ,", India","Ballia  , India ",25.8307174,84.1857115
+422,Akbarpur,", India","Akbarpur , India ",26.4269869,82.5331119
+423,Deesa,", India","Deesa , India ",24.2585055,72.1906739
+424,Nandurbar,", India","Nandurbar , India ",21.3700906,74.240336
+425,Buxar ,", India","Buxar  , India ",25.5647103,83.9777482
+426,Nagaur ,", India","Nagaur  , India ",27.1983368,73.7493272
+427,Firozpur !,", India","Firozpur ! , India ",30.9331348,74.6224755
+428,Mubarakpur ,", India","Mubarakpur  , India ",26.0809431,83.2987576
+429,Sehore UA,", India","Sehore UA , India ",23.192077,77.0791108
+430,Bongaon (M),", India","Bongaon (M) , India ",23.0467269,88.8291109
+431,Tadpatri,", India","Tadpatri , India ",14.9091024,78.0092047
+432,Port Blair,", India","Port Blair , India ",11.6233774,92.7264828
+433,Shikohabad,", India","Shikohabad , India ",27.1046449,78.5870112
+434,Shamli,", India","Shamli , India ",29.4501986,77.3172046
+435,Koch Bihar ,", India","Koch Bihar  , India ",26.3452397,89.4482079
+436,Suryapet UA,", India","Suryapet UA , India ",17.1420186,79.6213865
+437,Margao ,", India","Margao  , India ",15.2832187,73.986191
+438,Wardha,", India","Wardha , India ",20.745319,78.6021946
+439,Ranibennur,", India","Ranibennur , India ",14.615399,75.6288239
+440,Sitamarhi UA,", India","Sitamarhi UA , India ",26.591725,85.4897
+441,Kishanganj,", India","Kishanganj , India ",26.0982167,87.9450379
+442,Hindaun,", India","Hindaun , India ",26.7341201,77.0296837
+443,Jamalpur,", India","Jamalpur , India ",25.3180386,86.4934065
+444,Bhiwadi,", India","Bhiwadi , India ",28.2014149,76.8275503
+445,Bundi UA,", India","Bundi UA , India ",25.408457,75.650931
+446,Miryalaguda UA,", India","Miryalaguda UA , India ",16.8754654,79.5657567
+447,Tadepalligudem UA,", India","Tadepalligudem UA , India ",16.813841,81.521241
+448,Jagtial UA,", India","Jagtial UA , India ",18.796582,78.921536
+449,Baraut,", India","Baraut , India ",29.0996906,77.261897
+450,Udgir,", India","Udgir , India ",18.3942882,77.1126009
+451,Betul 44,", India","Betul 44 , India ",21.9011601,77.8960201
+452,Jehanabad,", India","Jehanabad , India ",25.2132649,84.9853322
+453,Nagapattinam,", India","Nagapattinam , India ",10.7672313,79.8448512
+454,Tezpur UA,", India","Tezpur UA , India ",26.7002961,92.8307601
+455,Rishikesh UA,", India","Rishikesh UA , India ",30.0869281,78.2676116
+456,Seoni,", India","Seoni , India ",22.0868691,79.5434841
+457,Aurangabad,", India","Aurangabad , India ",19.8761653,75.3433139
+458,Greater Noida*,", India","Greater Noida* , India ",28.4743879,77.5039904
+459,Hinganghat,", India","Hinganghat , India ",20.5516683,78.8418289
+460,Dhamtari ,", India","Dhamtari  , India ",20.7014999,81.5541579
+461,Sujangarh,", India","Sujangarh , India ",27.7044756,74.4642861
+462,Chilakaluripet,", India","Chilakaluripet , India ",16.0948008,80.1656205
+463,Mormugao ,", India","Mormugao  , India ",15.3889087,73.8165668
+464,Kasganj,", India","Kasganj , India ",27.808529,78.6461098
+465,Banswara ,", India","Banswara  , India ",23.5461394,74.4349761
+466,Gangtok,", India","Gangtok , India ",27.3313512,88.6138113
+467,Datia,", India","Datia , India ",25.6653168,78.4609182
+468,Nagda,", India","Nagda , India ",23.4561435,75.4226665
