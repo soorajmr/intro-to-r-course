@@ -37,7 +37,7 @@ india <- st_read("data/spatial_data/india-soi.geojson")
 
 geo_data_2011_sex_ratio <- geo_data %>%
   filter(year == "2011") %>%
-  mutate(sex_ratio = 1000*pop_male/pop_female)
+  mutate(sex_ratio = 1000*pop_female/pop_male)
 
 
 ua_plot <- ggplot() + 
@@ -56,9 +56,9 @@ ua_plot <- ggplot() +
                           breaks = c(100000,500000,1000000,5000000,10000000),
                           labels = c("100,000","500,000","1,000,000","5,000,000","10,000,000")) +
     scale_fill_gradient2(name = "Sex ratio", 
-                      low = "green",
+                      low = "red",
                       mid = "white",
-                      high = "red",
+                      high = "green",
                       midpoint = 1000)
 ```
 
@@ -91,8 +91,10 @@ district_pop <- ggplot() +
   scale_fill_gradient(name = "Population of Indian districts, 2011", 
                       low = "white",
                       high = "slateblue3",
-                      breaks = c(2500000,5000000,7500000,10000000),
-                      labels = c("2,500,000","5,000,000","7,500,000","10,000,000"))
+                      limits = c(0,6000000), ## We use limits to ensure that outliers don't dominate the color for the rest of the values
+                      oob = scales::squish, ## We squish out of bounds ("oob") values to the limits
+                      breaks = c(1500000,3000000,4500000,6000000),
+                      labels = c("1,500,000","3,000,000","4,500,000","6,000,000"))
 ```
 
 ```{r}
@@ -117,9 +119,11 @@ district_sex_ratio <- ggplot() +
   geom_sf(data = india, fill = "grey40") + 
   geom_sf(data =  districts_geo_data_sex_ratio, aes(fill = sex_ratio)) +
   scale_fill_gradient2(name = "Sex ratio of Indian districts, 2011", 
-                      low = "darkgreen",
+                      low = "red",
                       mid = "white",
-                      high = "red",
+                      high = "green",
+                      limits = c(850,1100),
+                      oob = scales::squish,
                       midpoint = 1000)
 ```
 
