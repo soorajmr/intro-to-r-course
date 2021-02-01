@@ -7,10 +7,6 @@ output:
     toc_float:
       collapsed: no
     self_contained: yes
-  html_notebook:
-    toc: yes
-    toc_float:
-      collapsed: no
 ---
 
 ## Grammar of Graphics and Ggplot2
@@ -205,7 +201,9 @@ plotly::ggplotly(cities_scatter)
 
 Let's try something fancy!  
 
-Ever felt like doing a [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling)? R lets you do some of that as well! In case you don't know what I am talking about, whatch [this video](https://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade) (seek to 11:00 if you're in a hurry).  
+Ever felt like doing a [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling)? R lets you do some of that as well! In case you don't know what I am talking about, watch [this video](https://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade) (seek to 11:00 if you're in a hurry).  
+
+(Ensure you have installed the package gifsky)
 
 
 ```{r}
@@ -232,6 +230,7 @@ data %>%
       labs(title = 'Year: {frame_time}', x = 'Sex Ratio', y = 'Population Density') +
       transition_time(as.integer(year)) +
       ease_aes('linear')
+
 ```
 
 ## R - Links and Resources
