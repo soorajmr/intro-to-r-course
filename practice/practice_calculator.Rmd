@@ -5,15 +5,62 @@ output: html_document
 
 # 1
 
+Someone's current salary is Rs. 20000 per month. Effective from next month, they are getting a 6% salary hike. How much more will they be paid in the next one year assuming no further hike?
+
+```{r}
+20000 * 0.06 * 12
+```
+
+# 2
+
+Your electricity supply company is charging as below for monthly consumption:
+
+Slab (Units of Consumption) | Per Unit Charge
+--------------------------- | ---------------
+First 30                    | Rs. 3.95        
+31 to 100                   | Rs. 5.45       
+101-200                     | Rs. 7.00       
+Above 200                   | Rs. 8.05       
+
+If your household consumption was 210 units last month, how much is your bill amount (ignore fixed charges, tax etc.)?
+
+```{r}
+
+```
+
+# 3a
+
+An amount of 10000 was invested for 10 years at an interest rate of 8%, compounded yearly. What will be the principal at the end of the 10th year?
+
+```{r}
+
+```
+
+# 3b
+
+What if you have different values for the principal, rate etc. for the question above? The idea of variables (named objects) makes it easy to handle such cases. Here we are giving a name to every value in the calculation and then performing the calculation using those names instead of the numbers directly. Fill in the values for these variables and try the calculation below.
+
+```{r}
+initial <- 0
+rate <- 0
+years <- 0
+
+final <- initial * (1 + rate)^years
+  
+print(final)
+```
+
+# 4
+
 What will be the result of running "1 + 2 * 4 - 8 / 2"? Make a guess. Try it in the code cell below. Did it match your expected answer?
 
 ```{r}
 1 + 2 * 4 - 8 / 2
 ```
 
-# 2
+# 5
 
-How would you add parantheses in the above expression to get an answer of 2? Don't change the numbers or the arithmetic operators.
+How would you add parantheses (brackets) in the above expression to get an answer of 2? Don't change the numbers or the arithmetic operators.
 
 ```{r}
 
@@ -21,7 +68,7 @@ How would you add parantheses in the above expression to get an answer of 2? Don
 
 Note: You could also type these expressions at the '>' prompt on the console and get the same answer.
 
-# 3
+# 6
 
 What is the difference between 10 / 3 and 10 %/% 3? Can you guess what is 10 %% 3? Try these in the cell below.
 
@@ -29,9 +76,9 @@ What is the difference between 10 / 3 and 10 %/% 3? Can you guess what is 10 %% 
 
 ```
 
-# 4
+# 7
 
-Apart from the arithmetic operator, R comes with a large number of built-in functions. Try the log() and exp() functions available in R. What is log(10)? Why is it not 1?
+In addition to the arithmetic operators, R comes with a large number of built-in functions. Try the log() and exp() functions available in R. What is log(10)? Why is it not 1?
 
 What about log(0)? log(-1)?
 
@@ -41,7 +88,7 @@ What is log(exp(10))? Try a larger number - like 1000. What do you get? Why?
 
 ```
 
-# 5
+# 8
 
 Exponentiation (raising to a power) is represented by the ^ (or **) operator in R. Find the square root of 2 using the sqrt() function. Raising a number to the power of 1/2 is equivalent to finding the square root. Is the below equal to sqrt(2)? Why?
 
