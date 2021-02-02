@@ -1,0 +1,117 @@
+---
+title: "Practice - ggplot basics"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
+```
+
+`ggplot` is the grammar of graphics plotting library for R. The concept is to make plots by creating layers on a base plot in a step by step manner
+
+# Load mtcars data
+
+Run this block of code to load ggplot package and mtcars data
+
+```{r}
+library(ggplot2)
+library(dplyr)
+data(mtcars)
+head(mtcars)
+summary(mtcars)
+```
+
+Some data preparation now. We want the names of the cars in the data frame. They are now the row names, not a separate column. We can add the names as a column using `mutate`. We also change the number of cylinders to a factor variable for making the plots better.
+
+```{r}
+mtcars <- mtcars %>% 
+  mutate(car_name = rownames(.)) %>% 
+  mutate(cyl = factor(cyl, ordered = TRUE))
+```
+
+# 1. Scatter plot
+
+`ggplot()` function creates an empty layer
+
+```{r}
+ggplot(mtcars)                                                # creates an emply base plot
+```
+
+`geom_point()` adds points with x and y coordinates, creating a scatter plot 
+
+Let us plot weight against mileage
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +   # aestheic mapping - x, y
+  geom_point()                           # add the geometric point object 
+```
+
+What if we want to see the effect of one more variable, number of cylinders? We can add it as colour in the scatter plot. Ggplot automatically shows the legend.
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg, col = cyl)) +   # add additional aesthetic color
+  geom_point()
+```
+
+Now let's add one more variable, the engine horse power as the size of the points.
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg, col = cyl, size = hp)) +  # add additional aesthetic size
+  geom_point()
+```
+
+Try this yourself: Use ggplot to plot mpg against hp as points. Use colors to highlight the different cyl 
+
+```{r}
+
+
+```
+
+
+# 2. Bar plots
+
+Let us plot the mileage of all the cars in the data as a bar graph. We first add the car names as a column (it is in fact row labels). Then, using geom_bar with stat = "identity", we create the plot.
+
+```{r}
+mtcars %>% 
+  ggplot() +  
+  geom_bar(aes(x = car_name, y = mpg), stat = "identity")  
+```
+
+The x axis labels are unreadable. An easy solution is to flip the x and y axes.
+
+```{r}
+myplot <- mtcars %>% 
+  ggplot() +  
+  geom_bar(aes(x = car_name, y = mpg), stat = "identity") +
+  coord_flip()
+
+myplot
+```
+
+You might want to arrange the bars in increasing or decreasing order of mileage for better readability. We can do that in the aesthetics of geom_bar by specifying `x = reorder(car, mpg)`. Try it below.
+
+```{r}
+
+```
+
+## Themes
+
+Save your last plot into a variable `myplot`. Try the different ggplot themes as below.
+
+```{r}
+myplot + theme_classic()                                                    # try out these themes
+myplot + theme_gray()
+myplot + theme_linedraw()
+```
+
+# 3. Finishing touches
+
+```{r}
+myplot + 
+  theme_minimal() +
+  labs(x = "Name of the car", y = "Miles per gallon") + # axis labels
+  ggtitle("Cars and their mileage")   # plot title
+```
+
+

@@ -1,0 +1,54 @@
+---
+title: "Reproducible Data Analysis using R"
+subtitle: 'Part 2: Data Preparation using Tidyverse'
+output: 
+  slidy_presentation:
+    footer: "Urban Informatics Lab, IIHS. 2021"
+    highlight: espresso
+---
+
+## Course Outline {.smaller}
+
+The idea is to cover a subset of R features to enable you to do data exploration
+
+### 1. Basics, base R
+> Only what is necessary for working with tabular data
+
+### 2. Cleaning and summarising tabular data using Tidyverse
+> This is a particular style, and there are alternatives
+
+### 3. Data visualisation using ggplot
+> R base plotting is the very popular alternative; we do not focus on that
+
+### 4. Exploratory data analysis practice
+> We will not get into inferential statistics
+
+### 5. Spatial data visualisation
+> Simple maps using vector data
+
+
+## What we are not covering
+
+| We are omitting some of the core parts of R as they are not necessary for the learning objective of this workshop. E.g.,
+
+  - Arrays, Matrices
+  - Base plotting
+  - Lists
+  - Environments
+  - Object oriented programming, classes
+  - Data table
+
+## Tidy Data and Tidyverse
+
+* In 2014, Statistician and well-known R developer Hadley Wickham introduced the philosophy of tidy data and viewing data analysis as a deeply interconnected and iterative process.
+* He has also created or inspired the creation of an ecosystem of R packages related to preparation, analysis or visualisation of tidy data sets. These are collectively called the **Tidyverse**. 
+* What Kind of Data is Tidy?
+    * Each variable you measure should be in one column
+    * Each different observation of that variable should be in a different row
+    * There should be one table for each "kind" of variable
+    * If you have multiple tables, they should include a column in the table that allows them to be joined or merged
+<br><br> (source: https://github.com/jtleek/datasharing)
+
+
+##### Tidyverse tour: https://www.tidyverse.org/
+
