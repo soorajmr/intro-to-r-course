@@ -115,3 +115,9 @@ myplot +
 ```
 
 
+We have only scratched the surface of what is possible with ggplot. If you would like to continue playing around with this data set and practice more ggplot features, this book chapter (freely available online) is a great resource: https://r4ds.had.co.nz/data-visualisation.html
+
+
+
+
+
