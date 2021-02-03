@@ -7,9 +7,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE, echo = FALSE, results = FALSE)
+
 library(sf)
 library(ggplot2)
-library(dplyr)
+library(tidyverse)
 ```
 
 Column {.sidebar}
@@ -19,21 +21,25 @@ Column {.sidebar}
 
 Here we have Indian UAs and districts with their 2011 populations and sex ratios.
 
+-----
+
+*Data Source: Census of India, 2011*
+
 Column {.tabset}
 -----------------------------------------------------------------------
 
 ### Urban Agglomerations
 
-```{r,include=FALSE}
-ua_points <- read.csv("data/spatial_data/ua_geocode.csv") #Reading it as csv directly
+```{r}
+ua_points <- read_csv("../data/spatial_data/ua_geocode.csv") #Reading it as csv directly
 ua_points <- st_as_sf(ua_points, coords = c("Longitude","Latitude")) #parsing to lat long info
 
-data <- read.csv("data/ua_populations.csv")
-geo_data <- merge(ua_points, data, by = "ua_no")
+data <- read_csv("../data/ua_populations.csv")
+geo_data <- inner_join(ua_points, data, by = "ua_no")
 
 st_crs(geo_data) <- st_crs("EPSG:4326")
 
-india <- st_read("data/spatial_data/india-soi.geojson")
+india <- st_read("../data/spatial_data/india-soi.geojson")
 
 geo_data_2011_sex_ratio <- geo_data %>%
   filter(year == "2011") %>%
@@ -60,25 +66,28 @@ ua_plot <- ggplot() +
                       mid = "white",
                       high = "green",
                       midpoint = 1000)
-```
 
-```{r}
 ua_plot
 ```
 
 ### District populations
 
-```{r,include=FALSE}
-india_pca <- read.csv("data/india_pca.csv")
+```{r}
+india_pca <- read_csv("../data/india_pca.csv")
 districts <- india_pca %>%
   filter(Level == "DISTRICT" & TRU == "Total")
-districts_geo <- st_read("data/spatial_data/India-Districts-2011Census.shp")
+districts_geo <- st_read("../data/spatial_data/India-Districts-2011Census.shp")
 
-districts_geo_data <- merge(districts_geo, districts, by.x = "censuscode", by.y = "District")
+districts <- districts %>%
+ mutate(censuscode = as.numeric(District))
 
+districts_geo <- districts_geo %>%
+ mutate(censuscode = as.numeric(censuscode))
+
+districts_geo_data <- inner_join(districts_geo, districts, by = "censuscode")
 
 district_pop <- ggplot() + 
-  ggtitle("Urban Agglomerations of India by Population and Sex Ratio, 2011") + 
+  ggtitle("Districts of India by Population, 2011") + 
   theme(
     axis.text = element_blank(),
         axis.title = element_blank(),
@@ -95,38 +104,34 @@ district_pop <- ggplot() +
                       oob = scales::squish, ## We squish out of bounds ("oob") values to the limits
                       breaks = c(1500000,3000000,4500000,6000000),
                       labels = c("1,500,000","3,000,000","4,500,000","6,000,000"))
-```
-
-```{r}
 district_pop
 ```
 
+
 ### District sex ratio
 
-```{r,include=FALSE}
+```{r}
 districts_geo_data_sex_ratio <- districts_geo_data %>%
   mutate(sex_ratio = 1000*TOT_F/TOT_M)
 
 district_sex_ratio <- ggplot() + 
-  ggtitle("Urban Agglomerations of India by Population and Sex Ratio, 2011") + 
-  theme(
-    axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank(),
-        panel.background = element_blank()
-  ) + 
-  geom_sf(data = india, fill = "grey40") + 
-  geom_sf(data =  districts_geo_data_sex_ratio, aes(fill = sex_ratio)) +
-  scale_fill_gradient2(name = "Sex ratio of Indian districts, 2011", 
-                      low = "red",
-                      mid = "white",
-                      high = "green",
-                      limits = c(850,1100),
-                      oob = scales::squish,
-                      midpoint = 1000)
+  ggtitle("Districts of India by Sex Ratio, 2011") 
+
+district_sex_ratio
 ```
 
+### Sex ratio - literacy scatter plot
+
 ```{r}
-district_sex_ratio
+
+district_sex_ratio_literacy <- ggplot() + 
+  ggtitle("Districts of India by Sex Ratio and Literacy, 2011") 
+  
+district_sex_ratio_literacy
+```
+
+### Make your own plot
+
+```{r}
+
 ```
