@@ -122,7 +122,7 @@ Try this yourself: Use mutate to create a new column for inverse hp
 The summarise verb is used for column summaries. This varies from the summary() function in the way it can be used to create summaries for subgroups of data rows, while summary() gives the column statistics considering all rows. Run the code below:
 
 ```{r}
-summarise(mtcars, avg_hp = mean(hp), median_hp = median(hp), max_hp = max(hp), n())
+summarise(mtcars, avg_hp = mean(hp), median_hp = median(hp), max_hp = max(hp), count = n())
 ```
 
 

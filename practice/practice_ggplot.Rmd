@@ -83,15 +83,17 @@ The x axis labels are unreadable. An easy solution is to flip the x and y axes.
 ```{r}
 myplot <- mtcars %>% 
   ggplot() +  
-  geom_bar(aes(x = car_name, y = mpg), stat = "identity") +
-  coord_flip()
+  geom_bar(aes(y = car_name, x = mpg), stat = "identity") 
 
 myplot
 ```
 
-You might want to arrange the bars in increasing or decreasing order of mileage for better readability. We can do that in the aesthetics of geom_bar by specifying `x = reorder(car, mpg)`. Try it below.
+You might want to arrange the bars in increasing or decreasing order of mileage for better readability. We can do that in the aesthetics of geom_bar by specifying `x = reorder(car_name, mpg)`. Try it below.
 
 ```{r}
+mtcars %>%
+  ggplot() +  
+  geom_bar(aes(y = reorder(car_name, -mpg), x = mpg), stat = "identity") 
 
 ```
 
