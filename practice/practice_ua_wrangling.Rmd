@@ -80,7 +80,7 @@ sr_diff <- sr_data %>%
 sr_diff
 ```
 
-Now we can calculate the difference across these years by just subtracting these two columns. Note that we need to use backticks (`) around the column names as they start with a number. Use arrange to order to check which cities saw the biggest changes in the positive and the negative direction.
+Now we can calculate the difference across these years by just subtracting these two columns. Note that we need to use backticks (`) around the column names as they start with a number. Use arrange to check which cities saw the biggest changes in the positive and the negative direction.
 
 ```{r}
 sr_diff %>% 
