@@ -1,0 +1,68 @@
+---
+title: "Reproducible Data Analysis using R"
+subtitle: 'Part 2: Data Exploration with Tidyverse'
+output: 
+  slidy_presentation:
+    footer: "Urban Informatics Lab, IIHS. 2021"
+    highlight: espresso
+---
+
+## Course Outline {.smaller}
+
+The idea is to cover a subset of R features to enable you to do data exploration
+
+### 1. Basics, base R
+> Only what is necessary for working with tabular data
+
+### 2. Cleaning and summarising tabular data using Tidyverse
+> This is a particular style, and there are alternatives
+
+### 3. Data visualisation using ggplot
+> R base plotting is the very popular alternative; we do not focus on that
+
+### 4. Exploratory data analysis practice
+> We will not get into inferential statistics
+
+### 5. Spatial data visualisation
+> Simple maps using vector data
+
+
+## What we are not covering
+
+| We are omitting some of the core parts of R as they are not necessary for the learning objective of this workshop. E.g.,
+
+  - Arrays, Matrices
+  - Base plotting
+  - Lists
+  - Environments
+  - Object oriented programming, classes
+  - Data table
+
+## Tidy Data and Tidyverse
+
+* In 2014, Statistician and R developer Hadley Wickham introduced the philosophy of tidy data and viewing data analysis as a deeply interconnected and iterative process.
+* He has also created or inspired the creation of an ecosystem of R packages related to preparation, analysis or visualisation of tidy data sets. These are collectively called the **Tidyverse**. 
+* What Kind of Data is Tidy?
+    * Each variable you measure should be in one column
+    * Each different observation of that variable should be in a different row
+    * There should be one table for each "kind" of variable
+    * If you have multiple tables, they should include a column in the table that allows them to be joined or merged
+<br><br> (source: https://github.com/jtleek/datasharing)
+
+
+##### Tidyverse tour: https://www.tidyverse.org/
+
+## Grammar of Graphics and ggplot
+
+| **`ggplot2`** package was implemented by Hadley Wickham following a systematic method (a "grammar") to construct quantitative graphics, called [Grammar of Graphics](https://www.cs.uic.edu/~wilkinson/TheGrammarOfGraphics/GOG.html).  
+
+
+#### At a high level, this is what you would do with ggplot:
+
+1. create a plot with the `ggplot()` call
+1. add layers using various `geom_*()` or `stat_*()` calls. Some properties (e.g. position) of these layers can be set in these calls.
+1. specify "aesthetics" using `aes()` for the full plot or per-layer. This deals with selecting variables to plot, colours, sizes, shapes of the plot elements etc. Aesthetics can be "mapped" to variables in the data.
+1. optionally specify faceting
+1. optionally adjust the scale, the axes and the legend
+1. optionally customise the theme
+

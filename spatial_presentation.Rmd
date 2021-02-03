@@ -55,6 +55,7 @@ sf is a package that allows us to handle files that have spatial data encoded in
 How can we parse this Latitude and Longitude data into R? We rely on the "sf" package for this. After that we can create a quick simple graph to see whether the points make sense or not. For this, we shall use "ggplot2" again and simply add the "geom_sf" function to it. 
 
 ```{r}
+
 ua_points <- read_csv("data/spatial_data/ua_geocode.csv") #Reading it as csv directly
 ua_points <- st_as_sf(ua_points, coords = c("Longitude","Latitude")) #parsing to lat long info
 plot <- ggplot(ua_points) + 
