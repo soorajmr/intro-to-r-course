@@ -1,0 +1,26 @@
+---
+title: "Practice spatial data"
+output: html_document
+---
+
+# Spatial data practice 
+
+Make an addition to the following code to make the populations visible as the sizes of the cities.
+
+```{r}
+library(tidyverse)
+library(sf)
+
+ua_points <- read_csv("../data/spatial_data/ua_geocode.csv") #Reading it as csv directly
+ua_points <- st_as_sf(ua_points, coords = c("Latitude","Longitude")) #parsing to lat long info
+
+data <- read_csv("../data/ua_populations.csv")
+geo_data <- inner_join(ua_points, data, by = "ua_no")
+
+india <- st_read("../data/spatial_data/india-soi.geojson")
+st_crs(geo_data) <- st_crs("EPSG:4326")
+plot <- ggplot() + 
+  geom_sf(data = india) + 
+  geom_sf(data = geo_data)
+plot
+```
