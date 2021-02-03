@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(flexdashboard)
 library(sf)
 library(ggplot2)
+library(tidyverse)
 ```
 
 
@@ -54,7 +55,7 @@ sf is a package that allows us to handle files that have spatial data encoded in
 How can we parse this Latitude and Longitude data into R? We rely on the "sf" package for this. After that we can create a quick simple graph to see whether the points make sense or not. For this, we shall use "ggplot2" again and simply add the "geom_sf" function to it. 
 
 ```{r}
-ua_points <- read.csv("data/spatial_data/ua_geocode.csv") #Reading it as csv directly
+ua_points <- read_csv("data/spatial_data/ua_geocode.csv") #Reading it as csv directly
 ua_points <- st_as_sf(ua_points, coords = c("Longitude","Latitude")) #parsing to lat long info
 plot <- ggplot(ua_points) + 
   geom_sf()
@@ -71,8 +72,8 @@ As we can see, this roughly forms the shape of India. We can be reasonably sure 
 Now we shall try to merge this UA point location data with the data in the UA populations file we have created in the past.
 
 ```{r}
-data <- read.csv("data/ua_populations.csv")
-geo_data <- merge(ua_points, data, by = "ua_no")
+data <- read_csv("data/ua_populations.csv")
+geo_data <- inner_join(ua_points, data, by = "ua_no")
 geo_data
 ```
 
