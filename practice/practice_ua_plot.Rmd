@@ -34,6 +34,8 @@ data
 
 A histogram will help us understand the overall distribution of population values. Let's plot one.
 
+Note how we have specified the figure height and width at the beginning of the R code chunk.
+
 ```{r fig.height=4, fig.width=4}
 data_2011 <- data %>% filter(year == 2011)
 ggplot(data_2011) + geom_histogram(aes(x = population), bins = 100)
@@ -57,7 +59,7 @@ data %>%
   mutate(ua = factor(ua)) %>% 
   mutate(ua = reorder(ua, population)) %>% # Order the factor according to population
   ggplot() +
-    geom_bar(aes(x = population, y = ua), stat = "identity")
+    geom_bar(aes(x = , y = ), stat = "identity")
 ```
 
 If you prefer comma separated numbers (e.g. 10,000) on the y axis instead of the scientific notation (e.g. 1.0e+05) you could add `+ scale_y_continuous(label = scales::comma)`. If the scales package is not installed, you will need to install it using `install.packages("scales")`.
@@ -71,10 +73,14 @@ filtered_uas <- data %>%
   filter(ua == "Delhi  U.A." | ua == "Greater Mumbai U.A." )
 
 ## Fill the correct aesthetics:
-ggplot(filtered_uas) + geom_line(aes(x = year, y = population, color = ua))
+ggplot(filtered_uas) + geom_line(aes(x = , y = , color = ))
 ```
 
 Add a few more cities to the plot above. If you have a long list, instead of chaining each one with a `ua ==` condition, the filter can use `%in%` operator: `filter(ua %in% c("city A", "city B", "city C"))`
+
+```{r}
+
+```
 
 ## Relative growth
 
@@ -120,9 +126,10 @@ Now we have to filter the data to include the rows only for these top-10 cities.
 relative_pop <- relative_pop %>% 
   semi_join(fastest_growing, by = "ua_no")
 
+## Fill in the aesthetics
 ggplot(relative_pop) +
-  geom_line(aes(x = year, y = population, colour = ua)) +
-  geom_point(aes(x = year, y = population))
+  geom_line(aes(x = , y = , colour = ua)) +
+  geom_point(aes(x = , y = )) # Add points on top of the line
 ```
 
 ## Percentage Change
@@ -154,12 +161,13 @@ Now, let's create a bar plot of the sex ratios of the 30 biggest cities in 2011.
 
 ```{r}
 filtered_uas <- data %>%
-  mutate(sex_ratio = 1000 * pop_female / pop_male) %>% 
-  filter(year == "2011") %>%
+  mutate(sex_ratio = ) %>% ## Fill this in. Females per 1000 males
+  filter() %>% ## Add a filter for the year
   mutate(ua = reorder(ua, sex_ratio)) %>% 
   top_n(30, population)
 
-ggplot(filtered_uas) + geom_bar(aes(x = sex_ratio, y = ua), stat = "identity")
+## Add the aesthetics
+ggplot(filtered_uas) + geom_bar(aes(x = , y = ), stat = "identity")
 
 ```
 
@@ -212,11 +220,10 @@ Since we want to show the time pattern for each city separately, we use `facet_w
 ```{r  fig.width = 10, fig.height=8}
 long_data %>%
   semi_join(sr_change_bottom_20, by = "ua_no") %>% 
-  filter(sex != "total") %>% 
   ggplot() +
-    geom_line(aes(x = year, y = population, colour = sex)) + 
+    geom_line(aes(x = , y = , colour = sex)) + ## Fill in x and y
     facet_wrap(~ua, scales = "free_y") +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) ## Rotate the labels so they don't overlap. Try commenting this out.
 ```
 
 
@@ -227,12 +234,12 @@ Now we create a scatter plot summarising the population, population density and 
 ```{r fig.width = 10, fig.height=8}
 
 cities_scatter <- data %>% 
-  filter(year == 2011) %>% 
+  filter() %>% ## Filter for year
   mutate(
-    sex_ratio = pop_female / pop_male * 1000,
-    pop_density = population / area     
+    sex_ratio = , ## Fill this
+    pop_density = ## Fill this     
   ) %>%
-  ggplot(aes(x = log10(population), y = pop_density, label = ua)) +
+  ggplot(aes(x = log10(population), y = pop_density, label = )) + # WHat should the label be?
     geom_point(aes(size = log10(population),
                    colour = sex_ratio,
                    alpha = 0.5)) +  # alpha sets the transparency level
