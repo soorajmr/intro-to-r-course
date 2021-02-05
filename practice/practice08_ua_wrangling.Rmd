@@ -1,0 +1,100 @@
+---
+title: "Practice - Data Wrangling"
+output:
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: no
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
+```
+
+# Census UA Data
+
+This is an example using the Urban Agglomerations (Class-1 cities) population data from the Census of India 2011. We look at the population growth in these cities and the changes in sex ratio over the decades.
+
+In this example, we use a cleaned version of the data. The data cleaning steps are shared as a separate file. 
+
+```{r}
+library(tidyverse)
+data <- read_csv("../data/ua_populations.csv")
+head(data)
+```
+
+# Sex ratio
+
+We calculate sex ratio as the number of females per 1000 males.
+
+## Overall
+
+We can aggregate the population in the Class-1 Cities for each Census year and look at the change in sex ratio.
+
+```{r}
+data %>% 
+  group_by(year) %>% 
+  summarise(
+    total_female = sum(pop_female, na.rm = TRUE),
+    total_male = sum(pop_male, na.rm = TRUE)
+  ) %>% 
+  mutate(sex_ratio = round(total_female / total_male * 1000, 2))
+```
+
+We can clearly see an increasing trend overall from 1961 to 2011. Now let's focus on individual cities.
+
+## Per City
+
+```{r}
+sr_data <- data %>% 
+  mutate(sex_ratio = pop_female / pop_male * 1000) %>% 
+  mutate(sex_ratio = round(sex_ratio, 2)) %>% 
+  select(ua_no, ua, year, sex_ratio)
+
+sr_data
+```
+
+Each city has a time series, making the data a bit difficult to consume. How do we look for patterns in this? First let's look at the latest situation.
+
+### 2011 sex ratios
+
+Filter the rows for the year 2011 and arrange the data by `sex_ratio`. Which cities have the largest sex ratios? Which ones have the smallest?
+
+```{r}
+sr_data %>% 
+  filter(year == 2011) %>% 
+  arrange(sex_ratio)
+```
+
+### Sex ratio change: 1991 to 2011
+
+Many cities underwent a demographic transition over the decades. Several factors including migration played a role. How do we quantify this change? One simple way may be to take the difference in sex ratios across a couple of decades. Let us take 1991 as the base year and calcualte the change by 2011.
+
+We will first need to change the shape of the data from long to wide. `pivot_wider()` is the function for it.
+
+```{r}
+sr_diff <- sr_data %>% 
+  filter(year == 2011 | year == 1991) %>% 
+  pivot_wider(names_from = year, values_from = sex_ratio)
+
+sr_diff
+```
+
+Now we can calculate the difference across these years by just subtracting these two columns. Note that we need to use backticks (`) around the column names as they start with a number. Use arrange to check which cities saw the biggest changes in the positive and the negative direction.
+
+```{r}
+sr_diff %>% 
+  mutate(sr_change = `2011` - `1991`)
+```
+
+# Exercise: Population Growth 
+
+**Practice:** Do a similar analysis on population growth from 1991 to 2011. Are there cities that did not have much growth in population over these years?
+
+```{r}
+## Your code here
+
+```
+
+
+

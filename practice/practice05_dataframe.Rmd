@@ -1,0 +1,59 @@
+---
+title: "Practice - Data Frame"
+output: html_document
+---
+
+Data frames can be thought of as tabular data arranged in columns and rows. Each column contains a single type of information. In other words, each column is equivalent to a vector.
+
+Let's organise some data from Census 2011 into a data frame. In practice, instead of creating it like this, we will be loading the data from a file (we will see this later).
+
+```{r}
+state_data <- data.frame(state = c("RAJASTHAN", "MADHYA PRADESH", "MAHARASHTRA",
+                                   "ANDHRA PRADESH", "UTTAR PRADESH", "JAMMU & KASHMIR",
+                                   "GUJARAT", "KARNATAKA", "ODISHA"),
+                         households = c(12711146, 15093256, 24421519, 21022588,
+                                        33448035, 2119718, 12248428, 13357027, 9637820),
+                         persons = c(68548437, 72626809, 112374333, 84580777, 199812341,
+                                     12541302, 60439692, 61095297, 41974218),
+                         male = c(35550997, 37612306, 58243056, 42442146, 104480510,
+                                  6640662, 31491260, 30966657, 21212136),
+                         female = c(32997440, 35014503, 54131277, 42138631, 95331831,
+                                    5900640, 28948432, 30128640, 20762082),
+                         area = c(342239.00, 308252.00, 307713.00, 275045.00, 240928.00,
+                                  222236.00, 196244.00, 191791.00, 155707.00))
+
+```
+
+The `head()` function shows you the top rows of the data frame.
+
+```{r}
+head(state_data)
+```
+
+Another way to print a data frame is using the `kable()` function in the knitr package.
+
+```{r}
+library(knitr)
+kable(state_data)
+```
+
+You can also view the data frame by opening the variable directly from the environment section in Rstudio.
+
+
+# 1
+
+By using the `$` operator, each of the columns of the data frame may be accessed as separate vectors. E.g. `state_data$households`. Use this method to check the correlation between the population of a state and its area. You can use the `cor` function for this.
+
+
+```{r}
+
+```
+
+# 2
+
+Use vector division to calculate the sex ratio of these states.
+
+```{r}
+
+```
+

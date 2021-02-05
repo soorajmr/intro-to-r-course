@@ -1,0 +1,299 @@
+---
+title: "Reproducible Data Analysis using R"
+subtitle: 'Part 1: Basics and Base R'
+output: 
+  slidy_presentation:
+    footer: "Urban Informatics Lab, IIHS. 2021"
+    theme: cerulean
+    highlight: kate
+---
+
+## Course Outline {.smaller}
+
+The aim is to cover a subset of R features to enable you to do data exploration.  
+
+
+### 1. Basics, base R
+
+|           Only what is necessary for working with tabular data
+
+### 2. Cleaning and summarising tabular data using **`tidyverse`**
+|           This is a particular style, and there are alternatives
+
+### 3. Data visualisation using **`ggplot`**
+|           R base plotting is the very popular alternative; we do not focus on that
+
+### 4. Exploratory data analysis practice
+|           Examples showing data exploration workflow
+|           We will not get into inferential statistics
+
+### 5. Spatial data visualisation
+|           Simple maps using vector data
+
+## Shortcut to Learning R
+
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+> - Practice, practice, practice, practice, practice, practice, practice, practice, practice, practice
+
+  
+**We will do a lot of hands-on exercises during the workshop, and leave you with materials to do more practice on your own.**
+
+## R Programming Language
+
+- An open source general purpose programming language developed in the 1990's
+- A popular platform for statistical computing and graphics 
+- More recently, has grown in popularity as a flexible tool to do data preparation and visualisation
+
+> ![](https://www.r-project.org/Rlogo.png){width=100px}
+[![Gentleman and Ihaka](../images/nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)
+Robert Gentleman and Ross Ihaka: Creators of R
+
+
+## Gazillion Packages {.smaller}
+
+- Packages extend R's functionality
+- Huge number of contributed packages for a wide range of things 
+- Most packages hosted on the [*The Comprehensive R Archive Network*](https://cran.r-project.org/) (CRAN). 
+- A smaller, but increasing number of packages are on Github and [Bioconductor](https://www.bioconductor.org/).
+- Let's take a look at https://cran.r-project.org/web/views/
+
+>![](https://gist.github.com/daroczig/3cf06d6db4be2bbe3368/raw/b66b0531fb1b86d3e04a003b2e105ad4f147900e/number-of-submitted-packages-to-CRAN.png){width=550px}  
+> (Source: https://gist.github.com/daroczig/3cf06d6db4be2bbe3368)
+
+## RStudio Desktop
+
+- An integrated development environment for R which lets you
+    - Write new R code
+    - Open existing R code
+    - Run (a.k.a. execute) R code to produce some output
+    
+- Let's take a quick tour of RStudio
+
+>![](https://d33wubrfki0l68.cloudfront.net/dc400531a1ea0d76be9c45f1cf8abe47474b37ba/ad2c5/wp-content/uploads/2014/04/rstudio-workbench.png){width=280px}  
+> (Source: https://rstudio.com/products/rstudio/features/)
+
+
+## Different Ways of Writing R code on Rstudio
+
+1. As a powerful scientific calculator!
+    - Short single line commands that do some calculation or plotting can be typed on RStudio "console" 
+    - A good way to start learning R
+1. R scripts
+    - Code files usually with `.R` extension. Can be created, modified and run on RStudio
+    - This course does not focus on this
+1. **R Markdown** files to produce html/pdf/Word output of different type
+    - In this course, we will focus on html output in these formats:
+      - Reports
+      - Dashboards
+      - Presentations (like the one you are looking at!)
+
+## R Markdown
+
+- A special type of file you create on Rstudio
+
+- lets you combine formatted text and images with the code you write and the output your code generates  
+- Simple text formatting options
+    - Headings
+    - Bold, italics
+    - Bullet points, numbered lists
+
+- Great for data analysis - the output can be directly shared with others
+
+- **Practice time**!
+    - Open `practice01_rmarkdown.Rmd` in RStudio and read it carefully.
+
+## R as a Calculator {.smaller}
+
+### Arithmetic operations
+
+```{r}
+2 * (31 - 10)
+355 / 113
+10000 * (1 + 0.08)^10
+```
+
+### Maths and statistics functions
+
+```{r}
+sqrt(2021)
+round(sqrt(2021), 2)
+```
+
+## Named Objects (Variables)
+
+Using meaningful names to the values we use can make the code more readable. A variable can be thought of a container with a name, which can hold a specific value at a time. The value can be changed if required.
+
+The operator **`<-`** is used to set (assign) a value to a variable.
+
+```{r}
+weight_kg <- 80
+height_metres <- 1.70
+bmi <- weight_kg / height_metres^2
+bmi <- round(bmi, 2)
+print(bmi)
+```
+
+* Certain special symbols, like +, -, /, *, ^, !, $, @, etc. are not allowed in a variable name. 
+* The name of an object cannot start with a number.
+
+## Let's Practise
+
+|  Remember: In R code, extra spaces don't change the output of code.  
+
+|  All the three lines below produce identical results. (However, note that `<-` cannot be split as `< -`)
+
+```{r}
+bmi<-weight_kg/height_metres^2
+bmi <- weight_kg / height_metres ^ 2
+bmi            <-     weight_kg       / height_metres  ^            2
+```
+
+|  But which is easier to read? <br>
+|  Similarly, often, breaking a line of code into multiple lines does not change the result.
+
+```{r}
+bmi <-
+  weight_kg /
+        height_metres^2
+```
+
+|  Now open `practice02_calculator.Rmd` in Rstudio and go through the content.
+|  Don't forget to "knit" it at the end to produce an html file.
+
+## Conditionals {.smaller}
+
+* Sometimes we have to do one thing if a condition holds true and another thing if it doesn't.
+* Comparison operators like ==, >, <, <=, >= give rise to such TRUE or FALSE conditions.
+* **`if`** statements help us run different pieces of code for the TRUE and FALSE cases.  
+* Often logical AND and OR operations (&, |) are used to combine conditions
+* The NOT operator (!) turns a TRUE into FALSE and vice versa.
+
+```{r}
+1 == 2
+1 < 1.001
+```
+
+```{r}
+if(bmi < 18.5) {
+  print("Underweight")
+} else {
+  print("Not underweight")
+}
+```
+
+## Loops
+
+Loops repeat one operation or a set of operations multiple times.
+
+Here is an example of a **`for`** loop:
+
+```{r}
+sum <- 0
+n <- 10
+for(i in 1:n) {
+  sum <- sum + i
+}
+sum
+```
+
+## Practice Time
+
+Loops and conditionals (control structures)
+
+`practice03_control.Rmd`
+
+## Vectors
+
+* Vectors are objects that contain one or more elements. 
+* The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc.
+
+```{r}
+ages <- c(22, 13, 38, 5, 26)
+birth_years <- 2021 - ages
+print(birth_years)
+```
+
+Indexing
+
+```{r}
+some_names <- c("Alice", "Bob", "Charlie")
+some_names[2]
+```
+
+## Lists
+
+* Lists are the most flexible type of objects in R. 
+* Lists can contain just about any type of objects, including lists. 
+* They could also be sometimes complex to manipulate. Use lists only when you need them.
+
+```{r}
+a <- list(name = "Alice", age = 11, height = 110)
+```
+
+## Factors
+
+* Factors are a way of representing categorical data in R.
+* They can take only one of the predefined values called levels.
+* Factors can be defined as ordered or unordered, depending on whether the data has a natural order relevant to the problem at hand.
+
+```{r}
+days <- factor(c("Mon", "Mon", "Thu", "Tue"),
+               levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"),
+               ordered = TRUE)
+days[3]
+
+```
+
+```{r}
+places <- factor(c("Village", "Town", "Village", "Village"),
+                 levels = c("Village", "Hamlet", "Outgrowth", "Town"))
+places[1]
+
+```
+
+## Functions
+
+```{r}
+compound_interest <- function(initial, rate, n) {
+  final <- initial * (1 + rate)^n
+  final - initial 
+}
+```
+
+```{r}
+interest <- compound_interest(10000, 0.07, 10)
+interest
+```
+```{r}
+compound_interest(rate = 0.07, n = 10, initial = 10000)
+```
+
+## Practice
+
+`practice04_vector.Rmd`
+
+## Data Frames {.smaller}
+
+Data frames can be thought of as lists of atomic vectors all having the same length. A data frame represents a table arranged in rows and columns.
+
+```{r}
+students <- list(name = c('Alice', 'Bob', 'Charlie'),
+                 age = c(11, 10, 11),
+                 status = factor(c("P", "A", "P")))
+students_df <- as.data.frame(students)
+students_df
+str(students_df)
+```
+
+## Practice
+
+`practice05_dataframe.Rmd`
+
+

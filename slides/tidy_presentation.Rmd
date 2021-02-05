@@ -1,0 +1,162 @@
+---
+title: "Reproducible Data Analysis using R"
+subtitle: 'Part 2: Data Exploration with Tidyverse'
+output: 
+  slidy_presentation:
+    footer: "Urban Informatics Lab, IIHS. 2021"
+    theme: cerulean
+    highlight: kate
+---
+
+## Course Outline {.smaller}
+
+The aim is to cover a subset of R features to enable you to do data exploration.  
+
+
+### 1. Basics, base R
+
+|           Only what is necessary for working with tabular data
+
+### 2. Cleaning and summarising tabular data using **`tidyverse`**
+|           This is a particular style, and there are alternatives
+
+### 3. Data visualisation using **`ggplot`**
+|           R base plotting is the very popular alternative; we do not focus on that
+
+### 4. Exploratory data analysis practice
+|           Examples showing data exploration workflow
+|           We will not get into inferential statistics
+
+### 5. Spatial data visualisation
+|           Simple maps using vector data
+
+
+## What we are NOT covering
+
+| We are omitting some of the core parts of R as they are not necessary for the learning objective of this workshop. E.g.,
+
+  - Arrays, Matrices
+  - Base plotting
+  - Lists
+  - Environments
+  - Object oriented programming, classes
+  - Data table
+
+## Tidy Data and Tidyverse
+
+* In 2014, Statistician and R developer Hadley Wickham introduced the philosophy of tidy data and viewing data analysis as a deeply interconnected and iterative process.
+* He has also created or inspired the creation of an ecosystem of R packages related to preparation, analysis or visualisation of tidy data sets. These are collectively called the **Tidyverse**. 
+* What Kind of Data is Tidy?
+    * Each variable you measure should be in one column
+    * Each different observation of that variable should be in a different row
+    * There should be one table for each "kind" of variable
+    * If you have multiple tables, they should include a column in the table that allows them to be joined or merged
+<br><br> (source: https://github.com/jtleek/datasharing)
+
+
+#### Tidyverse Tour: Great documentation and learning materials here: https://www.tidyverse.org/
+
+
+## The Concept of a Data Processing Pipeline
+
+Imagine we want to apply a sequence of operations on some data:
+
+```
+round(exp(mean(log(1:100))), 2)
+```
+
+This can become quite tedious to write and read as the number of operations increase. We could break it into steps:
+
+```
+a <- 1:100
+b <- log(a)
+c <- mean(b)
+d <- exp(c)
+e <- round(d, 2)
+e
+```
+
+Another way is to have a special pipeline operator - **`%>%`**. The analogy here is that the data flows through an assembly line that has multiple stages of processing.
+
+```
+1:100 %>% log() %>% mean() %>% exp() %>% round(2)
+```
+
+Note that the data does not appear again and again in all the different functions. The **`%>%`** takes care of passing the processed data from each stage to the next one.
+
+
+## Example {.smaller}
+
+```{r message=FALSE, error=FALSE}
+library(dplyr)
+library(stringr)
+
+data <- tibble(
+  x = 1:10,
+  y = x^2
+)
+```
+
+```{r}
+data <- data %>% 
+  mutate(
+    type = if_else(x %% 2 == 0, "even", "odd"),
+    square_digits = str_length(y)
+  )
+```
+
+```{r}
+## Let's pick only even numbers with squares that have more than one digit
+data %>% 
+  filter(type == "even" & square_digits > 1) %>% 
+  select(x, y)
+```
+
+## Practice Time
+
+`practice06_dplyr.Rmd`
+  
+
+`practice08_ua_wrangling.Rmd`
+
+## Grammar of Graphics and ggplot
+
+| **`ggplot2`** package was implemented by Hadley Wickham following a systematic method (a "grammar") to construct quantitative graphics, called [Grammar of Graphics](https://www.cs.uic.edu/~wilkinson/TheGrammarOfGraphics/GOG.html).  
+
+
+### At a high level, this is what you would do with ggplot:
+
+1. create a plot with the `ggplot()` call
+1. add layers using various `geom_*()` or `stat_*()` calls. Some properties (e.g. position) of these layers can be set in these calls.
+1. specify "aesthetics" mapping using `aes()` for the full plot or per-layer. This deals with selecting the variables to plot, setting colours, sizes, shapes of the plot elements etc. Aesthetics can be "mapped" to variables in the data.
+1. optionally specify faceting
+1. optionally adjust the scale, the axes and the legend
+1. optionally customise the theme
+
+## Say Hello to `ggplot` {.smaller}
+
+```{r  message=FALSE, error=FALSE, fig.height=2.5, fig.width=4}
+library(dplyr)
+library(ggplot2)
+
+data <- tibble(
+  number = seq(-7, 7, 0.5),
+  square = number ^ 2,
+)
+
+ggplot(data) +
+  geom_point(aes(x = number, y = square), shape = 0) +
+  geom_line(aes(x = number, y = square), colour = "red") +
+  geom_point(aes(x = -3, y = 150), size = 5) +
+  geom_point(aes(x = 3, y = 150), size = 5) +
+  theme_minimal()
+```
+
+## Practice Time
+
+`practice07_ggplot.Rmd`
+  
+
+`practice09_ua_plot.Rmd`
+
+

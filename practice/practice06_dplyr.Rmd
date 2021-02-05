@@ -1,0 +1,205 @@
+---
+title: "Practice - dplyr verbs"
+output: 
+    html_document:
+      toc: yes
+      toc_float:
+        collapsed: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
+```
+
+>     select
+>     filter
+>     arrange
+>     mutate
+>     summarise
+>     group_by
+>     the pipe operator
+
+dplyr verbs are useful to subset, transform and create summary statistics for our data. In this practice session we shall discuss a few basic verbs/functions available via dplyr. We shall use an example dataset called mtcars which is built-in to the R distribution. 
+
+# mtcars data
+
+Run this block of code to load dplyr package and mtcars data into program memory. Note that mtcars is a data frame.
+
+```{r}
+library(dplyr)
+data(mtcars)
+head(mtcars)                         # view the first 6 rows of data
+```
+
+We see that there are 11 columns in this data. To see a description of what each column means, enter `?mtcars` on the console.
+
+---
+
+# 1. select
+
+`select()` lets you choose only specific columns from your dataframe
+
+```{r}
+select(mtcars, mpg, hp)
+select(mtcars, -disp, -vs)
+```
+
+Try this yourself: Use select to view columns mpg, cyl and hp 
+
+```{r}
+
+```
+
+Try this yourself: Use select to view all columns except qsec 
+
+```{r}
+
+```
+
+---
+
+# 2. filter
+
+The `filter()` verb can be used to filter (include) rows that meet our condition and exclude the others. It works exactly like the filter tool available in excel. 
+
+```{r}
+filter(mtcars, mpg > 20)
+filter(mtcars, mpg > 20, cyl == 6)
+```
+
+Try this yourself: Use filter to get all rows with wt > 3
+
+```{r}
+
+```
+
+---
+
+# 3. arrange
+
+The arrange verb can be used to sort rows in a particular order, ascending or descending based on a single column or multiple columns. Run this code line by line to view the sorting order each time.
+
+```{r}
+arrange(mtcars, cyl)             # sort ascending on cyl
+arrange(mtcars, -cyl)            # sort descending on cyl  
+arrange(mtcars, cyl, gear)       # sort ascending first on cyl then on gear
+arrange(mtcars, cyl, desc(gear)) # sort ascending on cyl then descending on gear
+```
+
+Try this yourself: Use arrange to sort mtcars first in descending(decreasing) order of gears and then in ascending(increasing) order of hp. If you want to view the full data easily, you could assign the sorted result into a variable and view that from the "Environment" section on Rstudio.
+
+```{r}
+
+```
+
+---
+
+# 4. mutate
+
+We can create a new column using mutate. The new column is usually created by applying some operator or function on one or more existing columns.
+
+```{r}
+mutate(mtcars, wt_cyl = wt / cyl)         # the original mtcars data remains unchanged
+```
+
+The above mutate just printed the result, but it did not change the mtcars variable. If we want, we can save the result as a different variable.
+
+```{r}
+mtcars2 <- mutate(mtcars, wt_cyl = wt / cyl, inv_wt_cyl = 1 / wt_cyl) # create multiple columns 
+mtcars2
+```
+
+Try this yourself: Use mutate to create a new column for inverse hp
+
+```{r}
+
+```
+
+---
+
+# 5. summarise
+
+The summarise verb is used for column summaries. This varies from the summary() function in the way it can be used to create summaries for subgroups of data rows, while summary() gives the column statistics considering all rows. Run the code below:
+
+```{r}
+summarise(mtcars, avg_hp = mean(hp), median_hp = median(hp), max_hp = max(hp), count = n())
+```
+
+
+Check what the `summary()` function does:
+
+```{r}
+summary(mtcars)
+```
+
+---
+
+# 6. group_by
+
+The group_by verb is used for grouping rows. Summarise can then be applied on the grouped rows.
+
+```{r}
+grouped <- group_by(mtcars, cyl) #grouped on a single column
+grouped
+summarise(grouped, avg_mpg = mean(mpg), median_hp = median(mpg), max_hp = max(mpg), count = n())
+```
+
+```{r}
+grouped2 <- group_by(mtcars, cyl, hp) # grouped on 2 columns
+grouped2
+summarise(grouped2, avg_mpg = mean(mpg), median_mpg = median(mpg), max_mpg = max(mpg), count = n())
+```
+
+Try this yourself: Use group_by to group your data on number of gears. Generate summary statistics for the gear groups to display average mpg and the count within each group.
+
+```{r}
+
+```
+
+---
+
+# 7. Pipe operator (%>%)
+
+The pipe operator %>% is used to connect multiple dplyr verbs. Note that none of the verbs alter our original dataframe, they only provide us with an altered view of our data. We can however store this new view into a new dataframe.
+
+```{r}
+mtcars %>%
+  select(mpg, cyl, hp, wt) %>%
+  filter(cyl > 4)  
+
+mtcars                                               # note that the original dataset remains unchanged
+
+arranged_cars <- mtcars %>%
+  select(mpg, cyl, wt) %>%                           # select columns
+  filter(cyl > 4)  %>%                               # filter rows meeting condition
+  mutate(wt_cyl = wt / cyl) %>%                      # add a new column
+  arrange(wt_cyl)                                    # sort 
+
+arranged_cars
+
+subset_cars <- arranged_cars %>%
+  group_by(cyl, mpg) %>%                             # group rows
+  summarise(mean(wt_cyl), count = n())               # summarise groups  
+
+subset_cars
+
+```
+
+
+Try this yourself: Create a new dataframe from mtcars to display mpg, hp, carb where carb < 3. Present the data sorted by descending values of mpg. The task becomes easier if you execute one step at a time.
+
+```{r}
+                                      # choose your dataframe
+                                      # select your columns
+                                      # apply the filter
+                                      # arrange your data
+```
+
+
+Try this yourself: For the data selected in the code block above, find out the mean mpg for each carb group value.
+
+```{r}
+                                      # pass data from the previous code chunk as input
+                                      # group by 
+                                      # summarise
+```

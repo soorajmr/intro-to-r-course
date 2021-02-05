@@ -1,0 +1,229 @@
+---
+title: "Reproducible Data Analysis using R"
+subtitle: "Part 4: spatial data visualization and flexdashboard"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(flexdashboard)
+library(sf)
+library(ggplot2)
+library(tidyverse)
+```
+
+
+### Introduction to geospatial data
+
+Geospatial data can broadly be divided into the following categories - 
+
+* Vectors - points, lines and polygons
+* Rasters - data made up of pixels or cells (grids)
+
+Further, these types of files can represent various themes including - 
+
+* Administrative boundaries
+* Socio-Economic data
+* Transportation networks
+* Physical geography
+* Data collected from other sensors (NDVI)
+
+Today we will attempt to map some socio-economic factors onto vectors
+
+### How to use maps?
+
+Mapping data is stored in it's own special files, or can be inferred from human readable data.
+
+Ideally we would use already existing, cross-checked point-locations/shapefiles but in the absence of these, today we will attempt to create our own point locations for the UAs.
+
+For the India and District boundaries, we shall use open source boundaries. ([available here]("https://github.com/datameet/maps/"))
+
+To do this, we will be using a free Google sheets plugin called "Awesome Table" ([tutorial here]("../reference/geocoding-steps.html"); not recommended for official use - PLEASE USE EXISTING OFFICIAL BOUNDARIES AVAILABLE TO YOU)
+
+### Flexdashboard {.bigger}
+
+Flexdashboard is another package that allows us to create and customize Rmarkdown files to a much greater extent. We can add different layouts, interactivity as well as some dynamic controls.
+
+### sf {.bigger}
+
+sf is a package that allows us to handle files that have spatial data encoded in them. We are able to read & write, and perform operations on such files.
+
+### Spatial data in R
+
+#### Reading point location data and quick sanity check
+
+How can we parse this Latitude and Longitude data into R? We rely on the "sf" package for this. After that we can create a quick simple graph to see whether the points make sense or not. For this, we shall use "ggplot2" again and simply add the "geom_sf" function to it. 
+
+```{r}
+
+ua_points <- read_csv("../data/spatial_data/ua_geocode.csv") #Reading it as csv directly
+ua_points <- st_as_sf(ua_points, coords = c("Longitude","Latitude")) #parsing to lat long info
+plot <- ggplot(ua_points) + 
+  geom_sf()
+plot
+```
+
+As we can see, this roughly forms the shape of India. We can be reasonably sure that most of our points are correct. For further maps, we shall also add a boundary of India for helping visibility.
+
+
+### Adding data to maps
+
+#### Merging with UA data
+
+Now we shall try to merge this UA point location data with the data in the UA populations file we have created in the past.
+
+```{r}
+data <- read_csv("../data/ua_populations.csv")
+geo_data <- inner_join(ua_points, data, by = "ua_no")
+geo_data
+```
+
+Why not names? Does order matter?
+
+### Adding boundaries of India to the cities
+
+Now, we shall plot this on a map with the boundary of India
+
+```{r}
+india <- st_read("../data/spatial_data/india-soi.geojson")
+st_crs(geo_data) <- st_crs("EPSG:4326")
+plot <- ggplot() + 
+  geom_sf(data = india) + 
+  geom_sf(data = geo_data)
+plot
+```
+
+### Plotting population on the map
+
+We will plot the population as size of the point. Again to do this we just use "ggplot2" and add "aes()" to the "geom_sf" call
+
+```{r}
+library(dplyr) ## Why?
+geo_data_2011 <- geo_data %>%
+  filter(year == "2011")
+plot <- ggplot() + 
+  geom_sf(data = india) + 
+  geom_sf(data = geo_data_2011, aes(size = population))
+plot
+```
+
+We can see a familiar looking map in front of us. The big cities stand out and overall it makes more sense.
+
+### Adding Sex ratio to this map
+
+Now let's try adding the sex ratio as a color to the same map
+
+```{r}
+geo_data_2011_sex_ratio <- geo_data %>%
+  filter(year == "2011") %>%
+  mutate(sex_ratio = 1000*pop_female/pop_male)
+
+plot <- ggplot() + 
+  geom_sf(data = india) + 
+  geom_sf(data = geo_data_2011_sex_ratio, aes(size = population, fill = sex_ratio), shape = 21)
+plot
+```
+
+### Improvements
+
+#### Cleaning up and removing excess elements
+
+While we do have all this information on the map, none of it is very clearly visible, so we shall try to make it more coherent and visible.
+
+```{r}
+plot <- ggplot() + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  geom_sf(data = india, fill = NA) + 
+  geom_sf(data = geo_data_2011_sex_ratio, aes(size = population), shape = 21)
+plot
+```
+
+Already looks much cleaner! 
+
+### Improvements
+
+#### Changing population plot parameters and legend
+
+Now we shall try and turn the formatting of the sizes into something more understandable
+
+```{r}
+plot <- ggplot() + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  geom_sf(data = india, fill = NA) + 
+  geom_sf(data = geo_data_2011_sex_ratio, aes(size = population), shape = 21) + 
+    scale_size_continuous(name = "Population", range = c(0.5,8),
+                          limits = c(100000,20000000),
+                          breaks = c(100000,500000,1000000,5000000,10000000),
+                          labels = c("100,000","500,000","1,000,000","5,000,000","10,000,000"))
+
+plot
+```
+
+### Improvements
+
+#### Changing sex ratio colors and legend
+
+Now we shall add the sex ratios and color them in a red-green color scale.
+
+```{r}
+plot <- ggplot() + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  geom_sf(data = india, fill = NA) + 
+  geom_sf(data = geo_data_2011_sex_ratio, aes(size = population, fill = sex_ratio), shape = 21, color = "grey60") + 
+    scale_size_continuous(name = "Population", range = c(0.5,8),
+                          limits = c(100000,20000000),
+                          breaks = c(100000,500000,1000000,5000000,10000000),
+                          labels = c("100,000","500,000","1,000,000","5,000,000","10,000,000")) +
+    scale_fill_gradient2(name = "Sex ratio", 
+                      low = "red",
+                      mid = "white",
+                      high = "green",
+                      midpoint = 1000)
+
+plot
+```
+
+### Final
+
+```{r,echo=FALSE}
+plot <- ggplot() + 
+  ggtitle("Urban Agglomerations of India by Population and Sex Ratio, 2011") + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  geom_sf(data = india, fill = NA) + 
+  geom_sf(data = geo_data_2011_sex_ratio, aes(size = population, fill = sex_ratio), shape = 21, color = "grey60") + 
+    scale_size_continuous(name = "Population", range = c(0.5,8),
+                          limits = c(100000,20000000),
+                          breaks = c(100000,500000,1000000,5000000,10000000),
+                          labels = c("100,000","500,000","1,000,000","5,000,000","10,000,000")) +
+    scale_fill_gradient2(name = "Sex ratio", 
+                      low = "red",
+                      mid = "white",
+                      high = "green",
+                      midpoint = 1000)
+
+plot
+```

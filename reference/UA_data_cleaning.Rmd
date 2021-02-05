@@ -1,0 +1,66 @@
+---
+title: "Census 2011 Class-1 UA Data Cleaning"
+output: 
+  html_document:
+    df_print: paged
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE)
+```
+
+
+This document shows how to clean the urban agglomerations (Class-1 cities) population data from the Census of India 2011. We specify the data cleaning and transformation process as a `dplyr` pipeline.
+
+```{r}
+library(readxl)
+library(zoo)
+library(tidyverse)
+
+data <- read_excel("../data/CLASS I.xlsx", 
+                   skip = 53,
+                   col_names = c('ua_no', 'ua', 'district', 'year', 'type', 'area', 
+                                 'population', 'pop_change', 'pop_change_percent', 
+                                 'pop_male', 'pop_female'))
+
+data <- data %>% 
+  filter(!(!is.na(ua) & is.na(district) & is.na(year) & is.na(population))) %>% 
+  filter(!(!is.na(ua_no) & is.na(as.integer(ua_no)))) %>% 
+  mutate(
+    rowselector = ifelse(!is.na(ua_no),
+                         TRUE, 
+                         ifelse(is.na(year), FALSE, NA))
+  ) %>% 
+  mutate(rowselector = zoo::na.locf(rowselector)) %>% 
+  filter(rowselector == TRUE) %>% 
+  mutate(
+    ua_no = zoo::na.locf(ua_no),
+    ua = zoo::na.locf(ua),
+    year = as.integer(gsub("[^0-9]", "", year)),
+    area = as.double(area),
+    population = as.integer(population),
+    pop_change = as.integer(pop_change),
+    pop_change_percent = as.double(pop_change_percent),
+    pop_male = as.integer(pop_male),
+    pop_female = as.integer(pop_female)
+  ) %>%
+  filter(year >= 1961) %>% 
+  select(-c(rowselector, district, type))
+```
+
+Note: A more careful processing of the NA's may be done here.
+
+This is how the processed data looks:
+
+```{r}
+data
+```
+
+Write the data to disk
+
+```{r}
+# Uncomment the below line if you want to save the csv
+# write_csv(data, "data/ua_populations.csv")
+```
+

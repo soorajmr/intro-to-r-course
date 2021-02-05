@@ -1,0 +1,135 @@
+---
+title: "Spatial Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, error = FALSE, message = FALSE, echo = FALSE, results = FALSE)
+
+library(sf)
+library(ggplot2)
+library(tidyverse)
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+### Introduction
+
+Here we have Indian UAs and districts with their 2011 populations and sex ratios.
+
+-----
+
+*Data Source: Census of India, 2011*
+
+Column {.tabset}
+-----------------------------------------------------------------------
+
+### Urban Agglomerations
+
+```{r}
+ua_points <- read_csv("../data/spatial_data/ua_geocode.csv") #Reading it as csv directly
+ua_points <- st_as_sf(ua_points, coords = c("Longitude","Latitude")) #parsing to lat long info
+
+data <- read_csv("../data/ua_populations.csv")
+geo_data <- inner_join(ua_points, data, by = "ua_no")
+
+st_crs(geo_data) <- st_crs("EPSG:4326")
+
+india <- st_read("../data/spatial_data/india-soi.geojson")
+
+geo_data_2011_sex_ratio <- geo_data %>%
+  filter(year == "2011") %>%
+  mutate(sex_ratio = 1000*pop_female/pop_male)
+
+
+ua_plot <- ggplot() + 
+  ggtitle("Urban Agglomerations of India by Population and Sex Ratio, 2011") + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  geom_sf(data = india, fill = NA) + 
+  geom_sf(data = geo_data_2011_sex_ratio, aes(size = population, fill = sex_ratio), shape = 21, color = "grey60") + 
+    scale_size_continuous(name = "Population", range = c(0.5,8),
+                          limits = c(100000,20000000),
+                          breaks = c(100000,500000,1000000,5000000,10000000),
+                          labels = c("100,000","500,000","1,000,000","5,000,000","10,000,000")) +
+    scale_fill_gradient2(name = "Sex ratio", 
+                      low = "red",
+                      mid = "white",
+                      high = "green",
+                      midpoint = 1000)
+
+ua_plot
+```
+
+### District populations
+
+```{r}
+india_pca <- read_csv("../data/india_pca.csv")
+districts <- india_pca %>%
+  filter(Level == "DISTRICT" & TRU == "Total")
+districts_geo <- st_read("../data/spatial_data/India-Districts-2011Census.shp")
+
+districts <- districts %>%
+ mutate(censuscode = as.numeric(District))
+
+districts_geo <- districts_geo %>%
+ mutate(censuscode = as.numeric(censuscode))
+
+districts_geo_data <- inner_join(districts_geo, districts, by = "censuscode")
+
+mynewdata <- districts_geo_data %>% filter(ST_NM == "Karnataka")
+
+ggplot() + 
+  #geom_sf(data = india, fill = "grey40") + 
+  geom_sf(data = mynewdata, aes(fill = TOT_P))
+
+
+```
+
+
+### District sex ratio
+
+```{r}
+districts_geo_data_sex_ratio <- districts_geo_data %>%
+  mutate(sex_ratio = 1000*TOT_F/TOT_M)
+
+district_sex_ratio <- ggplot() + 
+  ggtitle("Districts of India by Sex Ratio, 2011") + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  #geom_sf(data = india, fill = "grey40") + 
+  geom_sf(data =  districts_geo_data_sex_ratio  %>% filter(ST_NM == "Tamil Nadu"), aes(fill = sex_ratio)) +
+  ggtitle("Districts of India by Sex Ratio, 2011") 
+
+district_sex_ratio
+```
+
+### Sex ratio - literacy scatter plot
+
+```{r}
+
+district_sex_ratio_literacy <- ggplot() + 
+  ggtitle("Districts of India by Sex Ratio and Literacy, 2011") 
+  
+district_sex_ratio_literacy
+```
+
+### Make your own plot
+
+```{r}
+
+```

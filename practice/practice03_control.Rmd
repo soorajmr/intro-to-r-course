@@ -1,0 +1,81 @@
+---
+title: "Practice - Control Structures"
+output: html_document
+---
+
+# 1
+
+If you run the below chunk, do you see the print? Why?
+
+```{r}
+if(FALSE) {
+  print("Hello")
+}
+```
+
+# 2
+
+If a number is divisible by 2, it is even. We can check it using the %% operator in R.
+
+(Note: paste() concatenates or joins character strings)
+
+```{r}
+i <- 6
+
+if(i %% 2 == 0) {
+  paste(i, "is even")
+} else {
+  paste(i, "is odd")
+}
+```
+How do we find all the factors of a number? Don't worry, we can let the computer do the hard work. Pick every number smaller than our number and check if it divides the number without remainder. Let's write a loop for that.
+
+```{r}
+n <- 108
+
+for(i in 1:n) {
+  if(FALSE) { ## Change this line
+    print(i)
+  }
+}
+```
+
+# 3
+
+Have you already celebrated your birthday this year? If you know your friend's date of birth, it shouldn't be difficult for you to identity whether their birthday this year is yet to come or not. But the computer isn't all that smart, and it needs to be told how to do this step by step. 
+
+Working with dates in R is easier if you use the package `lubridate`. Let's check the `today()` function from that package which gives you today's date.
+
+```{r}
+library(lubridate)
+today()
+```
+`month()` and `day()` functions can take a date and extract the month and day numbers respectively.
+
+```{r}
+month(today())
+day(today())
+```
+Now, let's try to write the code to take your date of birth and check if your birthday is over or not. If we do it using the month and day numbers, there are four possibilities.
+
+```{r}
+# Your date of birth
+dob <- as.Date("2000-01-01")
+
+this_month <- month(today())
+this_day <- day(today())
+
+if(month(dob) < this_month) {
+  print("Your birthday is over")
+} else if(FALSE) { ## Fill in the correct condition
+  print("Your birthday is over")
+} else if(month(dob) == this_month & day(dob) == this_day) {
+  print("Today is your birthday!!")
+} else {
+  print("Your birthday is yet to come")
+}
+```
+
+Try a few different DoB values and validate your code.
+
+
