@@ -4,28 +4,31 @@ subtitle: 'Part 1: Basics and Base R'
 output: 
   slidy_presentation:
     footer: "Urban Informatics Lab, IIHS. 2021"
-    highlight: espresso
+    theme: cerulean
+    highlight: kate
 ---
 
 ## Course Outline {.smaller}
 
-The idea is to cover a subset of R features to enable you to do data exploration
+The aim is to cover a subset of R features to enable you to do data exploration.  
+
 
 ### 1. Basics, base R
-> Only what is necessary for working with tabular data
 
-### 2. Cleaning and summarising tabular data using Tidyverse
-> This is a particular style, and there are alternatives
+|           Only what is necessary for working with tabular data
 
-### 3. Data visualisation using ggplot
-> R base plotting is the very popular alternative; we do not focus on that
+### 2. Cleaning and summarising tabular data using **`tidyverse`**
+|           This is a particular style, and there are alternatives
+
+### 3. Data visualisation using **`ggplot`**
+|           R base plotting is the very popular alternative; we do not focus on that
 
 ### 4. Exploratory data analysis practice
-> We will not get into inferential statistics
+|           Examples showing data exploration workflow
+|           We will not get into inferential statistics
 
 ### 5. Spatial data visualisation
-> Simple maps using vector data
-
+|           Simple maps using vector data
 
 ## Shortcut to Learning R
 
@@ -44,18 +47,16 @@ The idea is to cover a subset of R features to enable you to do data exploration
 
 ## R Programming Language
 
-
 - An open source general purpose programming language developed in the 1990's
 - A popular platform for statistical computing and graphics 
-- More recently, has grown to a flexible tool to do data preparation and visualisation
+- More recently, has grown in popularity as a flexible tool to do data preparation and visualisation
 
 > ![](https://www.r-project.org/Rlogo.png){width=100px}
-[![Gentleman and Ihaka](images/nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)  
-
+[![Gentleman and Ihaka](../images/nyt_r_2009.jpg){width=500px}](https://archive.nytimes.com/www.nytimes.com/2009/01/07/technology/business-computing/07program.html)
 Robert Gentleman and Ross Ihaka: Creators of R
 
 
-## Gazillion Packages
+## Gazillion Packages {.smaller}
 
 - Packages extend R's functionality
 - Huge number of contributed packages for a wide range of things 
@@ -68,42 +69,61 @@ Robert Gentleman and Ross Ihaka: Creators of R
 
 ## RStudio Desktop
 
-- An integrated development environment for R
-- What does that mean? Let's take a quick RStudio tour
+- An integrated development environment for R which lets you
+    - Write new R code
+    - Open existing R code
+    - Run (a.k.a. execute) R code to produce some output
+    
+- Let's take a quick tour of RStudio
 
->![](https://d33wubrfki0l68.cloudfront.net/dc400531a1ea0d76be9c45f1cf8abe47474b37ba/ad2c5/wp-content/uploads/2014/04/rstudio-workbench.png){width=500px}  
+>![](https://d33wubrfki0l68.cloudfront.net/dc400531a1ea0d76be9c45f1cf8abe47474b37ba/ad2c5/wp-content/uploads/2014/04/rstudio-workbench.png){width=280px}  
 > (Source: https://rstudio.com/products/rstudio/features/)
 
 
-## What can you do with Rstudio?
+## Different Ways of Writing R code on Rstudio
 
-1. Use it as a calculator!
-1. Write R scripts and run them
-1. Create and run **R Markdown** files to produce html/pdf/Word output
-    - Reports
-    - Dashboards
-    - Presentations
+1. As a powerful scientific calculator!
+    - Short single line commands that do some calculation or plotting can be typed on RStudio "console" 
+    - A good way to start learning R
+1. R scripts
+    - Code files usually with `.R` extension. Can be created, modified and run on RStudio
+    - This course does not focus on this
+1. **R Markdown** files to produce html/pdf/Word output of different type
+    - In this course, we will focus on html output in these formats:
+      - Reports
+      - Dashboards
+      - Presentations (like the one you are looking at!)
 
 ## R Markdown
-  
+
+- A special type of file you create on Rstudio
+
 - lets you combine formatted text and images with the code you write and the output your code generates  
-- Simple formatting options
+- Simple text formatting options
+    - Headings
+    - Bold, italics
+    - Bullet points, numbered lists
+
+- Great for data analysis - the output can be directly shared with others
 
 - **Practice time**!
+    - Open `practice01_rmarkdown.Rmd` in RStudio and read it carefully.
 
 ## R as a Calculator {.smaller}
 
+### Arithmetic operations
+
 ```{r}
 2 * (31 - 10)
-
 355 / 113
-
 10000 * (1 + 0.08)^10
+```
 
+### Maths and statistics functions
+
+```{r}
 sqrt(2021)
-
 round(sqrt(2021), 2)
-
 ```
 
 ## Named Objects (Variables)
@@ -114,17 +134,38 @@ The operator **`<-`** is used to set (assign) a value to a variable.
 
 ```{r}
 weight_kg <- 80
-height_meters <- 1.70
-bmi <- weight_kg / height_meters^2
+height_metres <- 1.70
+bmi <- weight_kg / height_metres^2
 bmi <- round(bmi, 2)
 print(bmi)
 ```
+
 * Certain special symbols, like +, -, /, *, ^, !, $, @, etc. are not allowed in a variable name. 
 * The name of an object cannot start with a number.
 
 ## Let's Practise
 
-Open the practice Rmd in Rstudio.
+|  Remember: In R code, extra spaces don't change the output of code.  
+
+|  All the three lines below produce identical results. (However, note that `<-` cannot be split as `< -`)
+
+```{r}
+bmi<-weight_kg/height_metres^2
+bmi <- weight_kg / height_metres ^ 2
+bmi            <-     weight_kg       / height_metres  ^            2
+```
+
+|  But which is easier to read? <br>
+|  Similarly, often, breaking a line of code into multiple lines does not change the result.
+
+```{r}
+bmi <-
+  weight_kg /
+        height_metres^2
+```
+
+|  Now open `practice02_calculator.Rmd` in Rstudio and go through the content.
+|  Don't forget to "knit" it at the end to produce an html file.
 
 ## Conditionals {.smaller}
 
@@ -161,9 +202,12 @@ for(i in 1:n) {
 }
 sum
 ```
+
 ## Practice Time
 
 Loops and conditionals (control structures)
+
+`practice03_control.Rmd`
 
 ## Vectors
 
@@ -233,6 +277,8 @@ compound_interest(rate = 0.07, n = 10, initial = 10000)
 
 ## Practice
 
+`practice04_vector.Rmd`
+
 ## Data Frames {.smaller}
 
 Data frames can be thought of as lists of atomic vectors all having the same length. A data frame represents a table arranged in rows and columns.
@@ -247,4 +293,7 @@ str(students_df)
 ```
 
 ## Practice
+
+`practice05_dataframe.Rmd`
+
 

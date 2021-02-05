@@ -38,7 +38,7 @@ Ideally we would use already existing, cross-checked point-locations/shapefiles 
 
 For the India and District boundaries, we shall use open source boundaries. ([available here]("https://github.com/datameet/maps/"))
 
-To do this, we will be using a free Google sheets plugin called "Awesome Table" ([tutorial here]("reference/geocoding-steps.html"); not recommended for official use - PLEASE USE EXISTING OFFICIAL BOUNDARIES AVAILABLE TO YOU)
+To do this, we will be using a free Google sheets plugin called "Awesome Table" ([tutorial here]("../reference/geocoding-steps.html"); not recommended for official use - PLEASE USE EXISTING OFFICIAL BOUNDARIES AVAILABLE TO YOU)
 
 ### Flexdashboard {.bigger}
 
@@ -56,7 +56,7 @@ How can we parse this Latitude and Longitude data into R? We rely on the "sf" pa
 
 ```{r}
 
-ua_points <- read_csv("data/spatial_data/ua_geocode.csv") #Reading it as csv directly
+ua_points <- read_csv("../data/spatial_data/ua_geocode.csv") #Reading it as csv directly
 ua_points <- st_as_sf(ua_points, coords = c("Longitude","Latitude")) #parsing to lat long info
 plot <- ggplot(ua_points) + 
   geom_sf()
@@ -73,7 +73,7 @@ As we can see, this roughly forms the shape of India. We can be reasonably sure 
 Now we shall try to merge this UA point location data with the data in the UA populations file we have created in the past.
 
 ```{r}
-data <- read_csv("data/ua_populations.csv")
+data <- read_csv("../data/ua_populations.csv")
 geo_data <- inner_join(ua_points, data, by = "ua_no")
 geo_data
 ```
@@ -85,7 +85,7 @@ Why not names? Does order matter?
 Now, we shall plot this on a map with the boundary of India
 
 ```{r}
-india <- st_read("data/spatial_data/india-soi.geojson")
+india <- st_read("../data/spatial_data/india-soi.geojson")
 st_crs(geo_data) <- st_crs("EPSG:4326")
 plot <- ggplot() + 
   geom_sf(data = india) + 

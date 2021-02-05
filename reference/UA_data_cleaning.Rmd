@@ -1,6 +1,8 @@
 ---
 title: "Census 2011 Class-1 UA Data Cleaning"
-output: html_document
+output: 
+  html_document:
+    df_print: paged
 ---
 
 
@@ -16,7 +18,7 @@ library(readxl)
 library(zoo)
 library(tidyverse)
 
-data <- read_excel("data/CLASS I.xlsx", 
+data <- read_excel("../data/CLASS I.xlsx", 
                    skip = 53,
                    col_names = c('ua_no', 'ua', 'district', 'year', 'type', 'area', 
                                  'population', 'pop_change', 'pop_change_percent', 
@@ -52,9 +54,7 @@ Note: A more careful processing of the NA's may be done here.
 This is how the processed data looks:
 
 ```{r}
-library(rmarkdown)
-
-paged_table(data)
+data
 ```
 
 Write the data to disk

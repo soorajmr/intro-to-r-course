@@ -86,25 +86,13 @@ districts_geo <- districts_geo %>%
 
 districts_geo_data <- inner_join(districts_geo, districts, by = "censuscode")
 
-district_pop <- ggplot() + 
-  ggtitle("Districts of India by Population, 2011") + 
-  theme(
-    axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid = element_blank(),
-        panel.background = element_blank()
-  ) + 
-  geom_sf(data = india, fill = "grey40") + 
-  geom_sf(data =  districts_geo_data, aes(fill = TOT_P)) +
-  scale_fill_gradient(name = "Population of Indian districts, 2011", 
-                      low = "white",
-                      high = "slateblue3",
-                      limits = c(0,6000000), ## We use limits to ensure that outliers don't dominate the color for the rest of the values
-                      oob = scales::squish, ## We squish out of bounds ("oob") values to the limits
-                      breaks = c(1500000,3000000,4500000,6000000),
-                      labels = c("1,500,000","3,000,000","4,500,000","6,000,000"))
-district_pop
+mynewdata <- districts_geo_data %>% filter(ST_NM == "Karnataka")
+
+ggplot() + 
+  #geom_sf(data = india, fill = "grey40") + 
+  geom_sf(data = mynewdata, aes(fill = TOT_P))
+
+
 ```
 
 
@@ -115,6 +103,16 @@ districts_geo_data_sex_ratio <- districts_geo_data %>%
   mutate(sex_ratio = 1000*TOT_F/TOT_M)
 
 district_sex_ratio <- ggplot() + 
+  ggtitle("Districts of India by Sex Ratio, 2011") + 
+  theme(
+    axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank()
+  ) + 
+  #geom_sf(data = india, fill = "grey40") + 
+  geom_sf(data =  districts_geo_data_sex_ratio  %>% filter(ST_NM == "Tamil Nadu"), aes(fill = sex_ratio)) +
   ggtitle("Districts of India by Sex Ratio, 2011") 
 
 district_sex_ratio
