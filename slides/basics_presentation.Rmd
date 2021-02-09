@@ -209,7 +209,7 @@ Loops and conditionals (control structures)
 
 `practice03_control.Rmd`
 
-## Vectors {.smaller}
+## Vectors
 
 * Vectors are objects that contain one or more elements. 
 * The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc.
@@ -217,16 +217,34 @@ Loops and conditionals (control structures)
 ```{r}
 ages <- c(22, 13, 38, 5, 26)
 birth_years <- 2021 - ages
-print(birth_years)
+birth_years
 ```
 
-| Indexing
+```{r}
+1:20
+```
+```{r}
+1:10 + 10:1
+```
+
+```{r}
+
+```
+
+## Vectors - Indexing  {.smaller}
+
+**`[` index `]`**
+
 
 ```{r}
 some_names <- c("Alice", "Bob", "Charlie", "Diana")
 some_names[1]
 some_names[c(4, 1, 3)]
 some_names[c(FALSE, FALSE, TRUE, TRUE)]
+```
+```{r}
+dow <- c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+dow[c(-1, -7)]
 ```
 
 ## Lists
@@ -344,5 +362,39 @@ number_to_sign2 <- function(x) {
 number_to_sign2(numbers)
 ```
 
+## `NA` or `NaN` values in lists {.smaller}
 
+```{r}
+x <- c(-4, 16, 25, -0.1, 36, -0.9, 49.0)
+y <- sqrt(x)
+y
+y > 0
+is.na(y)
+```
+
+## Handling `NA`
+
+| Remove the NA values
+
+```{r}
+y[!is.na(y)]
+```
+
+| Sometimes you may want to keep them in the vector, but exclude in the operation
+
+```{r}
+mean(y)
+mean(y, na.rm = TRUE)
+```
+
+## Recycling of Vectors
+
+```{r}
+1:20 + c(1, -1)
+```
+
+```{r}
+x <- 1:100
+x[c(TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)]
+```
 
