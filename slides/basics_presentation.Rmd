@@ -209,7 +209,7 @@ Loops and conditionals (control structures)
 
 `practice03_control.Rmd`
 
-## Vectors
+## Vectors {.smaller}
 
 * Vectors are objects that contain one or more elements. 
 * The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc.
@@ -220,11 +220,13 @@ birth_years <- 2021 - ages
 print(birth_years)
 ```
 
-Indexing
+| Indexing
 
 ```{r}
-some_names <- c("Alice", "Bob", "Charlie")
-some_names[2]
+some_names <- c("Alice", "Bob", "Charlie", "Diana")
+some_names[1]
+some_names[c(3, 4)]
+some_names[c(FALSE, FALSE, TRUE, TRUE)]
 ```
 
 ## Lists
@@ -271,6 +273,7 @@ compound_interest <- function(initial, rate, n) {
 interest <- compound_interest(10000, 0.07, 10)
 interest
 ```
+
 ```{r}
 compound_interest(rate = 0.07, n = 10, initial = 10000)
 ```
@@ -295,5 +298,51 @@ str(students_df)
 ## Practice
 
 `practice05_dataframe.Rmd`
+
+## Vectors Again {.smaller}
+
+| An important feature of R is that you can do computation on vectors the same way you do on atomic (single-element) objects. It is possible if the operation we are applying is *vectorised*. All the arithmetic operations, logical and comparison operators and many built-in functions have vectorised implementations in R, meaning the arguments to these operators/functions can be vectors. 
+
+```{r}
+x <- 1:10
+x > 5
+```
+
+| What may be happening below?
+
+```{r}
+sum(1 / factorial(0:10))
+```
+
+| If you want to calculate the compound interest for several years, instead of writing a loop, you could just pass a vector! When possible, using vectors this way is recommended in R and it is usually more efficient.
+
+```{r}
+compound_interest(10000, 10:20, 0.07)
+```
+
+## More about vectors: `if ... else` vs `ifelse` {.smaller}
+
+```{r}
+numbers <- c(-100, 2, 0.001, 0, -0.00001)
+number_to_sign1 <- function(x) {
+  if(x < 0){
+    "negative"
+  } else if(x == 0) {
+    "zero"
+  } else{
+    "positive"
+  }
+}
+number_to_sign1(numbers)
+```
+
+```{r}
+number_to_sign2 <- function(x) {
+  ifelse(x < 0, "negative", 
+         ifelse(x == 0, "zero", "positive"))
+}
+number_to_sign2(numbers)
+```
+
 
 

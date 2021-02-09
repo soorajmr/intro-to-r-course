@@ -363,8 +363,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Loops and conditionals (control structures)</p>
 <p><code>practice03_control.Rmd</code></p>
 </div>
-<div id="vectors" class="slide section level2">
-<h1>Vectors</h1>
+<div id="vectors" class="slide section level2 smaller">
+<h1 class="smaller">Vectors</h1>
 <ul>
 <li>Vectors are objects that contain one or more elements.</li>
 <li>The elements of a vector should all be of the same type (mode) - numerical, logical, character, etc.</li>
@@ -373,10 +373,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>birth_years <span class="ot">&lt;-</span> <span class="dv">2021</span> <span class="sc">-</span> ages</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(birth_years)</span></code></pre></div>
 <pre><code>## [1] 1999 2008 1983 2016 1995</code></pre>
-<p>Indexing</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>some_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>some_names[<span class="dv">2</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;Bob&quot;</code></pre>
+<div class="line-block">Indexing</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>some_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;Diana&quot;</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>some_names[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Alice&quot;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>some_names[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;Charlie&quot; &quot;Diana&quot;</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>some_names[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;Charlie&quot; &quot;Diana&quot;</code></pre>
 </div>
 <div id="lists" class="slide section level2">
 <h1>Lists</h1>
@@ -385,7 +389,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li>Lists can contain just about any type of objects, including lists.</li>
 <li>They could also be sometimes complex to manipulate. Use lists only when you need them.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">110</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">110</span>)</span></code></pre></div>
 </div>
 <div id="factors" class="slide section level2">
 <h1>Factors</h1>
@@ -394,28 +398,28 @@ code span.wa { color: #bf0303; } /* Warning */
 <li>They can take only one of the predefined values called levels.</li>
 <li>Factors can be defined as ordered or unordered, depending on whether the data has a natural order relevant to the problem at hand.</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Tue&quot;</span>),</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>),</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>days[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Tue&quot;</span>),</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>),</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>days[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] Thu
 ## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>places <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Village&quot;</span>, <span class="st">&quot;Town&quot;</span>, <span class="st">&quot;Village&quot;</span>, <span class="st">&quot;Village&quot;</span>),</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Village&quot;</span>, <span class="st">&quot;Hamlet&quot;</span>, <span class="st">&quot;Outgrowth&quot;</span>, <span class="st">&quot;Town&quot;</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>places[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>places <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Village&quot;</span>, <span class="st">&quot;Town&quot;</span>, <span class="st">&quot;Village&quot;</span>, <span class="st">&quot;Village&quot;</span>),</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Village&quot;</span>, <span class="st">&quot;Hamlet&quot;</span>, <span class="st">&quot;Outgrowth&quot;</span>, <span class="st">&quot;Town&quot;</span>))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>places[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] Village
 ## Levels: Village Hamlet Outgrowth Town</code></pre>
 </div>
 <div id="functions" class="slide section level2">
 <h1>Functions</h1>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>compound_interest <span class="ot">&lt;-</span> <span class="cf">function</span>(initial, rate, n) {</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  final <span class="ot">&lt;-</span> initial <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> rate)<span class="sc">^</span>n</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  final <span class="sc">-</span> initial </span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>interest <span class="ot">&lt;-</span> <span class="fu">compound_interest</span>(<span class="dv">10000</span>, <span class="fl">0.07</span>, <span class="dv">10</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>interest</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>compound_interest <span class="ot">&lt;-</span> <span class="cf">function</span>(initial, rate, n) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  final <span class="ot">&lt;-</span> initial <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> rate)<span class="sc">^</span>n</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  final <span class="sc">-</span> initial </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>interest <span class="ot">&lt;-</span> <span class="fu">compound_interest</span>(<span class="dv">10000</span>, <span class="fl">0.07</span>, <span class="dv">10</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>interest</span></code></pre></div>
 <pre><code>## [1] 9671.514</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compound_interest</span>(<span class="at">rate =</span> <span class="fl">0.07</span>, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">initial =</span> <span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compound_interest</span>(<span class="at">rate =</span> <span class="fl">0.07</span>, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">initial =</span> <span class="dv">10000</span>)</span></code></pre></div>
 <pre><code>## [1] 9671.514</code></pre>
 </div>
 <div id="practice" class="slide section level2">
@@ -425,16 +429,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="data-frames" class="slide section level2 smaller">
 <h1 class="smaller">Data Frames</h1>
 <p>Data frames can be thought of as lists of atomic vectors all having the same length. A data frame represents a table arranged in rows and columns.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Alice&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Charlie&#39;</span>),</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">11</span>),</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">status =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;P&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;P&quot;</span>)))</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>students_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(students)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>students_df</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Alice&#39;</span>, <span class="st">&#39;Bob&#39;</span>, <span class="st">&#39;Charlie&#39;</span>),</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">11</span>),</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">status =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;P&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;P&quot;</span>)))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>students_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(students)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>students_df</span></code></pre></div>
 <pre><code>##      name age status
 ## 1   Alice  11      P
 ## 2     Bob  10      A
 ## 3 Charlie  11      P</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(students_df)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(students_df)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    3 obs. of  3 variables:
 ##  $ name  : chr  &quot;Alice&quot; &quot;Bob&quot; &quot;Charlie&quot;
 ##  $ age   : num  11 10 11
@@ -443,6 +447,43 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="practice-1" class="slide section level2">
 <h1>Practice</h1>
 <p><code>practice05_dataframe.Rmd</code></p>
+</div>
+<div id="vectors-again" class="slide section level2 smaller">
+<h1 class="smaller">Vectors Again</h1>
+<div class="line-block">An important feature of R is that you can do computation on vectors the same way you do on atomic (single-element) objects. It is possible if the operation we are applying is <em>vectorised</em>. All the arithmetic operations, logical and comparison operators and many built-in functions have vectorised implementations in R, meaning the arguments to these operators/functions can be vectors.</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<div class="line-block">What may be happening below?</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="fu">factorial</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>))</span></code></pre></div>
+<pre><code>## [1] 2.718282</code></pre>
+<div class="line-block">If you want to calculate the compound interest for several years, instead of writing a loop, you could just pass a vector! When possible, using vectors this way is recommended in R and it is usually more efficient.</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compound_interest</span>(<span class="dv">10000</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>, <span class="fl">0.07</span>)</span></code></pre></div>
+<pre><code>##  [1] 1827.623 1899.883 1966.745 2028.984 2087.219 2141.949 2193.585 2242.471
+##  [9] 2288.893 2333.096 2375.289</code></pre>
+</div>
+<div id="more-about-vectors-if-...-else-vs-ifelse" class="slide section level2 smaller">
+<h1 class="smaller">More about vectors: <code>if ... else</code> vs <code>ifelse</code></h1>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">2</span>, <span class="fl">0.001</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.00001</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>number_to_sign1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;negative&quot;</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;zero&quot;</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;positive&quot;</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="fu">number_to_sign1</span>(numbers)</span></code></pre></div>
+<pre><code>## Warning in if (x &lt; 0) {: the condition has length &gt; 1 and only the first element
+## will be used</code></pre>
+<pre><code>## [1] &quot;negative&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>number_to_sign2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;negative&quot;</span>, </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>(x <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;zero&quot;</span>, <span class="st">&quot;positive&quot;</span>))</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">number_to_sign2</span>(numbers)</span></code></pre></div>
+<pre><code>## [1] &quot;negative&quot; &quot;positive&quot; &quot;positive&quot; &quot;zero&quot;     &quot;negative&quot;</code></pre>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
