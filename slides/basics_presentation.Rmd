@@ -188,11 +188,11 @@ if(bmi < 18.5) {
 }
 ```
 
-## Loops
+## Loops {.smaller}
 
-Loops repeat one operation or a set of operations multiple times.
+| Loops repeat one operation or a set of operations multiple times.
 
-Here is an example of a **`for`** loop:
+| Here is an example of a **`for`** loop:
 
 ```{r}
 sum <- 0
@@ -201,6 +201,19 @@ for(i in 1:n) {
   sum <- sum + i
 }
 sum
+```
+
+| `while()` is useful when you don't know how many times to repeat.
+
+```{r}
+## See https://en.wikipedia.org/wiki/Newton%27s_method
+x <- 169
+root <- x
+tiny <- 1e-10  ## Acceptable error threshold
+while(abs(x - root * root) > tiny) {
+  root <- (root + x / root) / 2
+}
+root
 ```
 
 ## Practice Time
