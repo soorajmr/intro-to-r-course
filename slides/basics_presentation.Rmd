@@ -387,11 +387,20 @@ mean(y)
 mean(y, na.rm = TRUE)
 ```
 
-## Recycling of Vectors
+## Recycling of Vectors {.smaller}
+
+| The second vector is being "recycled":
 
 ```{r}
 1:20 + c(1, -1)
 ```
+
+| What does the warning say?
+
+```{r}
+1:20 + c(-1, -2, -3)
+```
+| Index can get recycled, too
 
 ```{r}
 x <- 1:100
