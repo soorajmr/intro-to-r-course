@@ -203,10 +203,10 @@ for(i in 1:n) {
 sum
 ```
 
-| `while()` is useful when you don't know how many times to repeat.
+| **`while`** is useful when you don't know how many times to repeat.
 
 ```{r}
-## See https://en.wikipedia.org/wiki/Newton%27s_method
+## Newton's method for square root
 x <- 169
 root <- x
 tiny <- 1e-10  ## Acceptable error threshold
@@ -240,10 +240,6 @@ birth_years
 1:10 + 10:1
 ```
 
-```{r}
-
-```
-
 ## Vectors - Indexing  {.smaller}
 
 **`[` index `]`**
@@ -270,10 +266,9 @@ dow[c(-1, -7)]
 a <- list(name = "Alice", age = 11, height = 110)
 ```
 
-## Factors
+## Factors {.smaller}
 
-* Factors are a way of representing categorical data in R.
-* They can take only one of the predefined values called levels.
+* Factors are a way of representing categorical data in R; they can take only one of the predefined values called levels.
 * Factors can be defined as ordered or unordered, depending on whether the data has a natural order relevant to the problem at hand.
 
 ```{r}
@@ -288,6 +283,7 @@ days[3]
 places <- factor(c("Village", "Town", "Village", "Village"),
                  levels = c("Village", "Hamlet", "Outgrowth", "Town"))
 places[1]
+places[5] <- "City"
 
 ```
 
@@ -339,7 +335,7 @@ x <- 1:10
 x > 5
 ```
 
-| What may be happening below?
+| What is happening below?
 
 ```{r}
 sum(1 / factorial(0:10))
@@ -348,7 +344,7 @@ sum(1 / factorial(0:10))
 | If you want to calculate the compound interest for several years, instead of writing a loop, you could just pass a vector! When possible, using vectors this way is recommended in R and it is usually more efficient.
 
 ```{r}
-compound_interest(10000, 10:20, 0.07)
+compound_interest(10000, 0.07, 10:20)
 ```
 
 ## More about vectors: `if ... else` vs `ifelse` {.smaller}
@@ -378,11 +374,18 @@ number_to_sign2(numbers)
 ## `NA` or `NaN` values in lists {.smaller}
 
 ```{r}
+x <- c(2, 4, 0, NA, 10)
+y <- c(1, 2, 0, 10, 1)
+z <- x / y
+is.na(z)
+is.nan(z)
+```
+
+```{r}
 x <- c(-4, 16, 25, -0.1, 36, -0.9, 49.0)
 y <- sqrt(x)
 y
 y > 0
-is.na(y)
 ```
 
 ## Handling `NA`
@@ -418,5 +421,23 @@ mean(y, na.rm = TRUE)
 ```{r}
 x <- 1:100
 x[c(TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)]
+```
+
+## Vectors Know No Bounds!
+
+```{r}
+x <- 10:15
+x[10] <- 100
+x
+```
+
+```{r}
+## Fibonacci sequence
+fib <- c(1, 1)
+while(length(fib) < 20) {
+  last <- length(fib)
+  fib[last + 1] <- fib[last] + fib[last - 1]
+}
+fib
 ```
 
