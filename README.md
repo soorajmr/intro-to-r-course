@@ -16,9 +16,11 @@ If you would like to use this materials for self learning, follow these steps:
                        "markdown", "mime", "rmarkdown", "stringi", "stringr", "tinytex",
                        "xfun", "yaml", "flexdashboard", "spdep"))
 ```
-4. Download or clone this repository to your computer
-5. Open the basic.Rmd file under the `slides` folder in RStudio. Knit it to html using the `knit` option on the menu. You should see a presentation that you can navigate slide by slide. Read the presentation.
+4. Download or clone this repository to your computer (In the "Code" dropdown, you can download a zip file containing all the files in this repository)
+5. Open the `basics_presentation.Rmd` file under the `slides` folder in RStudio. Knit it to html using the `knit` option on the menu. You should see a presentation that you can navigate slide by slide. Read the presentation.
 6. When the slide contains instructions for practice, open the appropriate Rmd file in RStutio and start running the code cells one by one. You can also knit those Rmd files into html files.
+7. After completing the `basics_presentation.Rmd`, you could go through tidy_presentation.Rmd and then spatial_presentation.Rmd the same way.
+8. When you start running a new Rmd file cell by cell, it is advisable to clear the variables (Session -> Clear workspace). You may also restart R (Session -> Restart R). 
 
 Contributors:
 Divij Sinha, Viola Lewis, Sooraj Raveendran
