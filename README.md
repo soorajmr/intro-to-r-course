@@ -9,7 +9,12 @@ If you would like to use this materials for self learning, follow these steps:
 2. **Install RStudio**: RStudio is the most commonly used application for creating and running R code. Download and install Rstudio desktop from here: https://rstudio.com/products/rstudio/download/#download. You could keep all the default options in the installer. 
 3. **Install the required R packages**: Packages (or libraries) in R are additional optional components of the tool that we need to install. We will be making use of several packages in this course, and it will save some time if you install some of these beforehand. To do this, copy the text below and paste it at the “>” prompt in the “console” section of the Rstudio window, and press enter. On Windows, the installation should be over in a minute or two, and on Linux and Mac, it will take a little longer.
 ```
-    install.packages(c("tidyverse", "readxl", "ggplot2", "sf", "raster", "rgdal", "cartography", "zoo", "ggrepel", "gganimate", "ggridges", "gifsky", "leaflet", "base64enc", "digest", "evaluate", "glue", "highr", "htmltools", "jsonlite", "knitr", "magrittr", "markdown", "mime", "rmarkdown", "stringi", "stringr", "tinytex", "xfun", "yaml", "flexdashboard", "spdep"))
+    install.packages(c("tidyverse", "readxl", "ggplot2", "sf", "raster", "rgdal",
+                       "cartography", "zoo", "ggrepel", "gganimate", "ggridges",
+                       "gifsky", "leaflet", "base64enc", "digest", "evaluate",
+                       "glue", "highr", "htmltools", "jsonlite", "knitr", "magrittr",
+                       "markdown", "mime", "rmarkdown", "stringi", "stringr", "tinytex",
+                       "xfun", "yaml", "flexdashboard", "spdep"))
 ```
 4. Download or clone this repository to your computer
 5. Open the basic.Rmd file under the `slides` folder in RStudio. Knit it to html using the `knit` option on the menu. You should see a presentation that you can navigate slide by slide. Read the presentation.
